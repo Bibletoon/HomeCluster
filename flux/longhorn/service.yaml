@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+    name: longhorn-svc
+    namespace: longhorn
+spec:
+    type: LoadBalancer
+    selector:
+        app: longhorn-ui
+    ports:
+        - name: http
+          protocol: TCP
+          port: 80
+          targetPort: http
