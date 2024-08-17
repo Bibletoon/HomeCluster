@@ -16,5 +16,5 @@ spec:
                         service:
                             name: longhorn-svc
                             port:
-                                number: 8000
+                                number: 80
                                 kind: Service
