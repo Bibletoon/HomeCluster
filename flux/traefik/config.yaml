@@ -17,10 +17,12 @@ spec:
             expose: true
           metrics:
             expose: true
+        image:
+            repository: "rancher/mirrored-library-traefik"
+            tag: "2.10.7"
         service:
             spec:
                 externalTrafficPolicy: Local
         providers:
           kubernetesCRD:
             allowCrossNamespace: true
-                               
