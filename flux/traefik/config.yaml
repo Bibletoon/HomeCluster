@@ -5,27 +5,27 @@ metadata:
     namespace: kube-system
 spec:
     valuesContent: |-
-        additionalArguments:
-          - "--api"
-          - "--api.dashboard=true"
-          - "--api.insecure=true"
+         additionalArguments:
+            - "--api"
+            - "--api.dashboard=true"
+            - "--api.insecure=true"
         tolerations:
-        - key: "CriticalAddonsOnly"
-          operator: "Exists"
-        - key: "node-role.kubernetes.io/control-plane"
-          operator: "Exists"
-          effect: "NoSchedule"
-        - key: "node-role.kubernetes.io/master"
-          operator: "Exists"
-          effect: "NoSchedule"
+            - key: "CriticalAddonsOnly"
+              operator: "Exists"
+            - key: "node-role.kubernetes.io/control-plane"
+              operator: "Exists"
+              effect: "NoSchedule"
+            - key: "node-role.kubernetes.io/master"
+              operator: "Exists"
+              effect: "NoSchedule"
         api:
-          dashboard: true
-          insecure: true
+            dashboard: true
+            insecure: true
         ports:
-          traefik:
-            expose: true
-          metrics:
-            expose: true
+            traefik:
+                expose: true
+            metrics:
+                expose: true
         image:
             repository: "rancher/mirrored-library-traefik"
             tag: "2.10.7"
@@ -33,6 +33,6 @@ spec:
             spec:
                 externalTrafficPolicy: Local
         providers:
-          kubernetesCRD:
-            allowCrossNamespace: true
+            kubernetesCRD:
+                allowCrossNamespace: true
 
