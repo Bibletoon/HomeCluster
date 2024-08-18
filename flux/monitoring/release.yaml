@@ -20,6 +20,8 @@ spec:
             ingress:
                 enabled: true
                 ingressClassName: traefik
+                annotations:
+                    traefik.ingress.kubernetes.io/router.middlewares: allow-local-only@kubernetescrd
                 hosts:
                     - prometheus.home
             prometheusSpec:
