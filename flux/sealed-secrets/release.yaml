@@ -23,3 +23,5 @@ spec:
             enabled: true
             ingressClassName: traefik
             hostname: secrets.home
+            annotations:
+                traefik.ingress.kubernetes.io/router.middlewares: default-allow-local-only@kubernetescrd
