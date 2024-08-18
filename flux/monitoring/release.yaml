@@ -55,7 +55,6 @@ spec:
                 ingressClassName: traefik
                 hosts:
                     - grafana.bibletoon.xyz
-                    - grafana.home
             persistence:
                 enabled: true
                 storageClassName: "longhorn"
@@ -77,5 +76,7 @@ spec:
             ingress:
                 enabled: true
                 ingressClassName: traefik
+                annotations:
+                    traefik.ingress.kubernetes.io/router.middlewares: allow-local-only@kubernetescrd
                 hosts:
                     - alerts.home
