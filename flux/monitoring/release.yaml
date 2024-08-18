@@ -38,7 +38,7 @@ spec:
                 scrapeConfigSelector: {}
                 scrapeConfigNamespaceSelector: {}
                 retention: 5d
-                retentionSize: 45Gi
+                retentionSize: 45GB
                 storageSpec:
                     volumeClaimTemplate:
                         spec:
