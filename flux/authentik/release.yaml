@@ -30,6 +30,7 @@ spec:
                 host: file:////postgres-creds/host
                 password: file:///postgres-creds/password
                 user: file:///postgres-creds/user
+                name: file:///postgres-creds/dbname
         server:
             metrics:
                 enabled: true
