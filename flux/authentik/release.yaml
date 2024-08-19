@@ -20,9 +20,9 @@ spec:
                 host: "authentik-redis-master"
                 password: file:////redis-creds/password
             postgresql:
-                host: file:////postgres-cred/host
-                password: file:///postgres-cred/password
-                user: file:///postgres-cred/user
+                host: file:////postgres-creds/host
+                password: file:///postgres-creds/password
+                user: file:///postgres-creds/user
         server:
             metrics:
                 enabled: true
