@@ -15,6 +15,13 @@ spec:
                 namespace: authentik
             interval: 1h
     values:
+        global:
+            env:
+                - name: AUTHENTIK_SECRET_KEY
+                  valueFrom:
+                      secretKeyRef:
+                          name: authentik-key
+                          key: key
         authentik:
             redis:
                 host: "authentik-redis-master"
