@@ -1,18 +1,18 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-    name: authentik-redis
+    name: authentik
     namespace: authentik
 spec:
     interval: 10m
     chart:
         spec:
-            chart: redis
-            version: '20.0.x'
+            chart: authentik
+            version: '2024.6.x'
             sourceRef:
                 kind: HelmRepository
-                name: bitnamicharts
-                namespace: redis
+                name: authentik
+                namespace: authentik
             interval: 1h
     values:
         authentik:
