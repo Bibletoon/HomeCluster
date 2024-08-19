@@ -1,0 +1,29 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: authentik
+    namespace: authentik
+spec:
+    interval: 10m
+    chart:
+        spec:
+            chart: authentik
+            version: '2024.6.x'
+            sourceRef:
+                kind: HelmRepository
+                name: authentik
+                namespace: authentik
+            interval: 1h
+    values:
+        persistence:
+            enabled: true
+            size: 5Gi
+            storageClassName: longhorn
+        replica:
+            replicaCount: 2
+        auth:
+            enabled: true
+            existingSecret: "redis-password"
+            existingSecretPasswordKey: "password"
+
+ 
