@@ -11,6 +11,6 @@ spec:
             version: '0.21.x'
             sourceRef:
                 kind: HelmRepository
-                name: grafana
-                namespace: loki
+                name: cnpg
+                namespace: cnpg
             interval: 1h
