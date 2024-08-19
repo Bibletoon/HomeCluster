@@ -1,0 +1,73 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: authentik-redis
+    namespace: authentik
+spec:
+    interval: 10m
+    chart:
+        spec:
+            chart: redis
+            version: '20.0.x'
+            sourceRef:
+                kind: HelmRepository
+                name: bitnamicharts
+                namespace: redis
+            interval: 1h
+    values:
+        authentik:
+            redis:
+                host: "authentik-redis-master"
+                password: file://redis-creds/password
+            postgresql:
+                host: file://postgres-cred/host
+                password: file://postgres-cred/password
+                user: file://postgres-cred/user
+        server:
+            metrics:
+                enabled: true
+                serviceMonitor:
+                    enabled: true
+                    namespace: monitoring
+            ingress:
+                enabled: true
+                ingressClassName: traefik
+                hosts:
+                    - auth.bibletoon.xyz
+                https: true
+            volumes:
+                - name: redis-creds
+                  secret:
+                      secretName: redis-password
+                - name: postgres-creds
+                  secret:
+                      secretName: authentik-postgres-app
+            volumeMounts:
+                - name: redis-creds
+                  mountPath: /redis-creds
+                  readOnly: true
+                - name: postgres-creds
+                  mountPath: /postgres-creds
+                  readOnly: true
+        worker:
+            volumes:
+                - name: redis-creds
+                  secret:
+                      secretName: redis-password
+                - name: postgres-creds
+                  secret:
+                      secretName: authentik-postgres-app
+            volumeMounts:
+                - name: redis-creds
+                  mountPath: /redis-creds
+                  readOnly: true
+                - name: postgres-creds
+                  mountPath: /postgres-creds
+                  readOnly: true
+        postgresql:
+            enabled: false
+        redis:
+            enabled: fase
+
+
+ 
