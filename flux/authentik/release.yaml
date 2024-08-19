@@ -67,7 +67,7 @@ spec:
         postgresql:
             enabled: false
         redis:
-            enabled: fase
+            enabled: false
 
 
  
