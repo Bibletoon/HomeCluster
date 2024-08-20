@@ -55,8 +55,6 @@ spec:
                 ingressClassName: traefik
                 hosts:
                     - grafana.bibletoon.xyz
-                annotations:
-                    traefik.ingress.kubernetes.io/router.middlewares: authentik-auth-middleware@kubernetescrd
             persistence:
                 enabled: true
                 storageClassName: "longhorn"
@@ -66,7 +64,7 @@ spec:
             envFromSecret: grafana-auth
             grafana.ini:
                 auth:
-                    signout_redirect_url: "https://authentik.company/application/o/grafana/end-session/"
+                    signout_redirect_url: "https://auth.bibletoon.xyz/application/o/grafana/end-session/"
                     oauth_auto_login: true
                 auth.generic_oauth:
                     name: authentik
