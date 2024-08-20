@@ -78,6 +78,7 @@ spec:
                     auth_url: "https://auth.bibletoon.xyz/application/o/authorize/"
                     token_url: "https://auth.bibletoon.xyz/application/o/token/"
                     api_url: "https://auth.bibletoon.xyz/application/o/userinfo/"
+                    skip_org_role_sync: true
                     # Optionally map user groups to Grafana roles
                     role_attribute_path: contains(groups, 'Grafana Admins') && 'Admin' || contains(groups, 'Grafana Editors') && 'Editor' || 'Viewer'
         kubeEtcd:
