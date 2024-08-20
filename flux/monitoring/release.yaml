@@ -67,12 +67,13 @@ spec:
                     root_url: 'https://grafana.bibletoon.xyz/'
                 auth:
                     signout_redirect_url: "https://auth.bibletoon.xyz/application/o/grafana/end-session/"
+                    oauth_allow_insecure_email_lookup: true
                     oauth_auto_login: true
                 auth.generic_oauth:
                     name: authentik
                     enabled: true
                     client_id: '${CLIENT_ID}'
-                    client_secret: '${CLIENT_ID}'
+                    client_secret: '${CLIENT_SECRET}'
                     scopes: "openid profile email"
                     auth_url: "https://auth.bibletoon.xyz/application/o/authorize/"
                     token_url: "https://auth.bibletoon.xyz/application/o/token/"
