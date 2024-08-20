@@ -42,7 +42,6 @@ spec:
                 ingressClassName: traefik
                 hosts:
                     - auth.bibletoon.xyz
-                https: true
             volumes:
                 - name: redis-creds
                   secret:
