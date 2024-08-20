@@ -50,12 +50,18 @@ spec:
                 - name: postgres-creds
                   secret:
                       secretName: authentik-postgres-app
+                - name: certificate
+                  secret:
+                      secretName: wildcard-bibletoon-tls
             volumeMounts:
                 - name: redis-creds
                   mountPath: /redis-creds
                   readOnly: true
                 - name: postgres-creds
                   mountPath: /postgres-creds
+                  readOnly: true
+                - name: certificate
+                  mountPath: /certs/wildcard-bibletoon-tls
                   readOnly: true
         worker:
             volumes:
@@ -65,12 +71,18 @@ spec:
                 - name: postgres-creds
                   secret:
                       secretName: authentik-postgres-app
+                - name: certificate
+                  secret:
+                      secretName: wildcard-bibletoon-tls
             volumeMounts:
                 - name: redis-creds
                   mountPath: /redis-creds
                   readOnly: true
                 - name: postgres-creds
                   mountPath: /postgres-creds
+                  readOnly: true
+                - name: certificate
+                  mountPath: /certs/wildcard-bibletoon-tls
                   readOnly: true
         postgresql:
             enabled: false
