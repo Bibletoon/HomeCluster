@@ -63,6 +63,8 @@ spec:
                 size: 10Gi
             envFromSecret: grafana-auth
             grafana.ini:
+                server:
+                    root_url: 'https://grafana.bibletoon.xyz/'
                 auth:
                     signout_redirect_url: "https://auth.bibletoon.xyz/application/o/grafana/end-session/"
                     oauth_auto_login: true
