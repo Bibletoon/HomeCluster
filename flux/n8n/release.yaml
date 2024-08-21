@@ -31,17 +31,17 @@ spec:
     valuesFrom:
         - kind: Secret
           targetPath: config.postgresdb.database
-          name: n8n-posgres-app
+          name: n8n-postgres-app
           valuesKey: dbname
         - kind: Secret
           targetPath: config.postgresdb.host
-          name: n8n-posgres-app
+          name: n8n-postgres-app
           valuesKey: host
         - kind: Secret
           targetPath: config.postgresdb.user
-          name: n8n-posgres-app
+          name: n8n-postgres-app
           valuesKey: user
         - kind: Secret
           targetPath: secret.postgresdb.password
-          name: n8n-posgres-app
+          name: n8n-postgres-app
           valuesKey: password
