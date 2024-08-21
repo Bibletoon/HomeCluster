@@ -15,8 +15,6 @@ spec:
                 namespace: n8n
             interval: 1h
     values:
-        image:
-            tag: "1.55.3"
         config:
             database: postgresdb
         persistence:
