@@ -25,5 +25,9 @@ spec:
             enabled: true
             existingSecret: "redis-password"
             existingSecretPasswordKey: "password"
+        metrics:
+            enabled: true
+            serviceMonitor:
+                enabled: true
 
  
