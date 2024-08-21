@@ -1,0 +1,72 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: wallabag
+    namespace: wallabag
+spec:
+    interval: 10m
+    chart:
+        spec:
+            chart: wallabag
+            version: '7.2.x'
+            sourceRef:
+                kind: HelmRepository
+                name: geek-cookbook
+                namespace: wallabag
+            interval: 10m
+    values:
+        image:
+            tag: 2.6.9
+        env:
+            - name: POPULATE_DATABASE
+              value: "true"
+            - name: SYMFONY__ENV__DOMAIN_NAME
+              value: https://wallabag.bibletoon.xyz
+            - name: SYMFONY__ENV__DATABASE_DRIVER
+              value: pdo_pgsql
+            - name: SYMFONY__ENV__DATABASE_HOST
+              valueFrom:
+                  secretKeyRef:
+                      name: wallabag-postgres-app
+                      key: host
+            - name: SYMFONY__ENV__DATABASE_NAME
+              valueFrom:
+                  secretKeyRef:
+                      name: wallabag-postgres-app
+                      key: dbname
+            - name: SYMFONY__ENV__DATABASE_CHARSET
+              value: utf8
+            - name: SYMFONY__ENV__DATABASE_PORT
+              valueFrom:
+                  secretKeyRef:
+                      name: wallabag-postgres-app
+                      key: port
+            - name: SYMFONY__ENV__DATABASE_PASSWORD
+              valueFrom:
+                  secretKeyRef:
+                      key: password
+                      name: wallabag-postgres-app
+            - name: SYMFONY__ENV__DATABASE_USER
+              valueFrom:
+                  secretKeyRef:
+                      key: user
+                      name: wallabag-postgres-app
+            - name: TZ
+              value: UTC
+        ingress:
+            main:
+                enabled: true
+                ingressClassName: traefik
+                hosts:
+                    - host: wallabag.bibletoon.xyz
+                      paths:
+                          - path: /
+        persistence:
+            images:
+                enabled: true
+                moutPath: /var/www/wallabag/web/assets/images
+                storageClass: longhorn
+                accessMode: ReadWriteOnce
+                size: 5Gi
+        postgresql:
+            enabled: false
