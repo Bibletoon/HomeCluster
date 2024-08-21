@@ -15,8 +15,12 @@ spec:
                 namespace: n8n
             interval: 1h
     values:
+        image:
+            tag: "1.55.3"
         config:
             database: postgresdb
+            host: n8n.bibletoon.xyz
+            port: 443
         persistence:
             enabled: true
             storageClassName: longhorn
@@ -28,15 +32,15 @@ spec:
                   paths: ['/']
     valuesFrom:
         - kind: Secret
-          targetPath: config.postgresdb.database
+          targetPath: config.database.postgresdb.database
           name: n8n-postgres-app
           valuesKey: dbname
         - kind: Secret
-          targetPath: config.postgresdb.host
+          targetPath: config.database.postgresdb.host
           name: n8n-postgres-app
           valuesKey: host
         - kind: Secret
-          targetPath: config.postgresdb.user
+          targetPath: config.database.postgresdb.user
           name: n8n-postgres-app
           valuesKey: user
         - kind: Secret
