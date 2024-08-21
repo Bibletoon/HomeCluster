@@ -44,6 +44,6 @@ spec:
           name: n8n-postgres-app
           valuesKey: user
         - kind: Secret
-          targetPath: secret.postgresdb.password
+          targetPath: secret.database.postgresdb.password
           name: n8n-postgres-app
           valuesKey: password
