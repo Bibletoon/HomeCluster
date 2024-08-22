@@ -18,6 +18,24 @@ spec:
         image:
             tag: 1.24.1
         env:
+            - name: OIDC_CLIENT_ID
+              valueFrom:
+                  secretKeyRef:
+                      name: freshrss-oidc
+                      key: clientId
+            - name: OIDC_CLIENT_SECRET
+              valueFrom:
+                  secretKeyRef:
+                      name: freshrss-oidc
+                      key: clientSecret
+            - name: OIDC_ENABLED
+              value: 1
+            - name: OIDC_PROVIDER_METADATA_URL
+              value: https://authentik.company/application/o/freshrss/.well-known/openid-configuration
+            - name: OIDC_X_FORWARDED_HEADERS
+              value: X-Forwarded-Port X-Forwarded-Proto X-Forwarded-Host
+            - name: OIDC_SCOPES
+              value: openid email profile
         persistence:
             config:
                 enabled: true
