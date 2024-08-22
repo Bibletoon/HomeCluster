@@ -36,6 +36,10 @@ spec:
               value: X-Forwarded-Port X-Forwarded-Proto X-Forwarded-Host
             - name: OIDC_SCOPES
               value: openid email profile
+            - name: OIDC_REMOTE_USER_CLAIM
+              value: preferred_username
+            - name: OIDC_CLIENT_CRYPTO_KEY
+              value: YvEq97IFP66ypS2vVQDL
         persistence:
             config:
                 enabled: true
