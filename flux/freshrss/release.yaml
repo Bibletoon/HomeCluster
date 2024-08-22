@@ -7,7 +7,7 @@ spec:
     interval: 10m
     chart:
         spec:
-            chart: sealed-secrets
+            chart: freshrss
             version: '7.0.x'
             sourceRef:
                 kind: HelmRepository
