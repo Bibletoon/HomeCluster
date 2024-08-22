@@ -1,0 +1,34 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: freshrss
+    namespace: freshrss
+spec:
+    interval: 10m
+    chart:
+        spec:
+            chart: sealed-secrets
+            version: '7.0.x'
+            sourceRef:
+                kind: HelmRepository
+                name: k8s-home-lab
+                namespace: freshrss
+            interval: 1h
+    values:
+        image:
+            tag: 1.21.1
+        env:
+        persistence:
+            config:
+                enabled: true
+                storageClass: longhorn
+                size: 3Gi
+                accessMode: ReadWriteOnce
+        ingress:
+            main:
+                enabled: true
+                ingressClassName: traefik
+                hosts:
+                    - host: rss.bibletoon.xyz
+                      paths:
+                          - path: /
