@@ -16,7 +16,7 @@ spec:
             interval: 1h
     values:
         image:
-            tag: 1.21.1
+            tag: 1.24.1
         env:
         persistence:
             config:
