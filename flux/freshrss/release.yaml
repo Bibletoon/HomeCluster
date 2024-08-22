@@ -16,6 +16,7 @@ spec:
             interval: 1h
     values:
         image:
+            repository: freshrss/freshrss
             tag: 1.24.1
         env:
             - name: OIDC_CLIENT_ID
