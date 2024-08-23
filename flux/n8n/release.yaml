@@ -23,7 +23,8 @@ spec:
             port: 443
         persistence:
             enabled: true
-            storageClassName: longhorn
+            type: dynamic
+            storageClass: longhorn
         ingress:
             enabled: true
             ingressClassName: traefik
