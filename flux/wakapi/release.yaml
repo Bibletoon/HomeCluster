@@ -30,14 +30,9 @@ spec:
         wakapi_config:
             env: production
             db:
-                host:
-                port:
-                user:
-                password:
-                name:
                 dialect: postgres
             security:
-                password_salt:
+                password_salt: 123123123
     valuesFrom:
         - kind: Secret
           targetPath: wakapi_config.db.name
