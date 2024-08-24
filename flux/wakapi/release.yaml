@@ -33,8 +33,10 @@ spec:
             env: production
             db:
                 dialect: postgres
+            app:
+                avatar_url_template: https://www.gravatar.com/avatar/{email_hash}
             security:
-                password_salt: 123123123
+                allow_signup: false
     valuesFrom:
         - kind: Secret
           targetPath: wakapi_config.security.password_salt
