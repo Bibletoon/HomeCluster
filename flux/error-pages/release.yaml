@@ -19,4 +19,4 @@ spec:
             tag: 3.3.0
         env:
             TEMPLATE_NAME: lost-in-space
-            SHOW_DETAILS: "true"
+            SHOW_DETAILS: "false"
