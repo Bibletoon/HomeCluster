@@ -37,6 +37,10 @@ spec:
                 password_salt: 123123123
     valuesFrom:
         - kind: Secret
+          targetPath: wakapi_config.security.password_salt
+          name: password-salt
+          valuesKey: salt
+        - kind: Secret
           targetPath: wakapi_config.db.name
           name: wakapi-postgres-app
           valuesKey: dbname
