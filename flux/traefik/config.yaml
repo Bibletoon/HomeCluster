@@ -8,11 +8,6 @@ spec:
         api:
             dashboard: true
             insecure: true
-        ports:
-            traefik:
-                expose: true
-            metrics:
-                expose: true
         image:
             repository: "rancher/mirrored-library-traefik"
             tag: "2.10.7"
@@ -23,6 +18,10 @@ spec:
             kubernetesCRD:
                 allowCrossNamespace: true
         ports:
+            traefik:
+                expose: true
+            metrics:
+                expose: true
             web:
                 redirectTo:
                     port: websecure
