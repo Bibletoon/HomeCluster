@@ -5,6 +5,7 @@ metadata:
     namespace: kube-system
     annotations:
         traefik.ingress.kubernetes.io/router.middlewares: default-allow-local-only@kubernetescrd
+        traefik.ingress.kubernetes.io/router.middlewares: error-pages-redirect-middleware@kubernetescrd
         kubernetes.io/ingress.class: traefik
 spec:
     rules:
