@@ -22,6 +22,10 @@ spec:
         providers:
             kubernetesCRD:
                 allowCrossNamespace: true
-        websecure:
-            middlewares:
-                - error-pages-redirect-middleware@kubernetescrd
+        ports:
+            web:
+                middlewares:
+                    - error-pages-redirect-middleware@kubernetescrd
+            websecure:
+                middlewares:
+                    - error-pages-redirect-middleware@kubernetescrd
