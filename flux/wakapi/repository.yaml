@@ -5,4 +5,4 @@ metadata:
     namespace: wakapi
 spec:
     interval: 1h
-    url: https://andreymaznyak.github.io/wakapi-helm-chart/
+    url: https://bibletoon.github.io/Charts
