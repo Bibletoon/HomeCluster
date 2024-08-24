@@ -22,7 +22,8 @@ spec:
             ingressClassName: traefik
             hosts:
                 - host: wakapi.bibletoon.xyz
-                  paths: ['/']
+                  paths:
+                      - path: '/'
         persistence:
             enabled: true
             storageClass: longhorn
