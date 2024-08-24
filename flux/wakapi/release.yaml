@@ -24,6 +24,7 @@ spec:
                 - host: wakapi.bibletoon.xyz
                   paths:
                       - path: '/'
+                        pathType: prefix
         persistence:
             enabled: true
             storageClass: longhorn
