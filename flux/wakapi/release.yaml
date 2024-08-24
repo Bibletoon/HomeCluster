@@ -33,8 +33,6 @@ spec:
             env: production
             db:
                 dialect: postgres
-            app:
-                avatar_url_template: https://www.gravatar.com/avatar/{email_hash}
             security:
                 allow_signup: false
     valuesFrom:
