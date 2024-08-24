@@ -24,8 +24,9 @@ spec:
                 allowCrossNamespace: true
         ports:
             web:
-                middlewares:
-                    - error-pages-redirect-middleware@kubernetescrd
+                redirectTo:
+                    port: websecure
+                    permanent: true
             websecure:
                 middlewares:
                     - error-pages-redirect-middleware@kubernetescrd
