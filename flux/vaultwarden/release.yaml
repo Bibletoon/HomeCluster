@@ -54,9 +54,9 @@ spec:
           name: vaultwarden-pg-app
           valuesKey: port
         - kind: Secret
-          targetPath: database.user
+          targetPath: database.username
           name: vaultwarden-pg-app
-          valuesKey: username
+          valuesKey: user
         - kind: Secret
           targetPath: database.password
           name: vaultwarden-pg-app
