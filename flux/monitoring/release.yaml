@@ -118,7 +118,7 @@ spec:
                             api_url: 'https://api.telegram.org'
                             chat_id: 412750554
                             parse_mode: 'HTML'
-                            message: {{`{{ template "telegram.message" . }}`}}
+                            message: {{ "{{ template \"telegram.message\" . }}" }}
                 route:
                     group_by:
                         - namespace
