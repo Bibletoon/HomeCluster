@@ -39,6 +39,7 @@ spec:
             name: "vaultwarden-data"
             size: "3Gi"
             class: longhorn
+            accessMode: ReadWriteOnce
     valuesFrom:
         - kind: Secret
           targetPath: database.dbName
