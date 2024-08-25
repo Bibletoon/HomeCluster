@@ -83,6 +83,7 @@ spec:
         kubeEtcd:
             enabled: false
         alertmanager:
+            tplConfig: true
             config:
                 global:
                     resolve_timeout: 5m
