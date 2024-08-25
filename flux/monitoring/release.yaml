@@ -83,6 +83,53 @@ spec:
         kubeEtcd:
             enabled: false
         alertmanager:
+            config:
+                global:
+                    resolve_timeout: 5m
+                inhibit_rules:
+                    - equal:
+                          - namespace
+                          - alertname
+                      source_matchers:
+                          - severity = critical
+                      target_matchers:
+                          - severity =~ warning|info
+                    - equal:
+                          - namespace
+                          - alertname
+                      source_matchers:
+                          - severity = warning
+                      target_matchers:
+                          - severity = info
+                    - equal:
+                          - namespace
+                      source_matchers:
+                          - alertname = InfoInhibitor
+                      target_matchers:
+                          - severity = info
+                    - target_matchers:
+                          - alertname = InfoInhibitor
+                receivers:
+                    - name: "null"
+                    - name: 'telegram_bot'
+                      telegram_configs:
+                          - bot_token: '{{ .Values.telegram_token }}'
+                            api_url: 'https://api.telegram.org'
+                            chat_id: 412750554
+                            parse_mode: 'HTML'
+                route:
+                    group_by:
+                        - namespace
+                    group_interval: 5m
+                    group_wait: 30s
+                    receiver: "telegram_bot"
+                    repeat_interval: 12h
+                    routes:
+                        - matchers:
+                              - alertname = "Watchdog"
+                          receiver: "null"
+                templates:
+                    - /etc/alertmanager/config/*.tmpl
             alertmanagerSpec:
                 storage:
                     volumeClaimTemplate:
@@ -99,3 +146,9 @@ spec:
                     traefik.ingress.kubernetes.io/router.middlewares: default-allow-local-only@kubernetescrd
                 hosts:
                     - alerts.home
+    valuesFrom:
+        - kind: Secret
+          targetPath: telegram_token
+          name: telegram
+          valuesKey: token
+
