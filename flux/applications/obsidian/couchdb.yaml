@@ -1,0 +1,28 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: obsidian-db
+    namespace: obsidian
+spec:
+    interval: 10m
+    chart:
+        spec:
+            chart: couchdb
+            version: '4.5.x'
+            sourceRef:
+                kind: HelmRepository
+                name: couchdb
+                namespace: couchdb
+            interval: 10m
+    values:
+        clusterSize: 2
+        persistentVolume:
+            enabled: true
+            size: 10Gi
+            storageClass: longhorn
+        ingress:
+            enabled: true
+            hosts:
+                - obsidiandb.bibletoon.xyz
+            path: /
+ 
