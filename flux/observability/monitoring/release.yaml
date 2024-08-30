@@ -127,12 +127,12 @@ spec:
                     receiver: "telegram_bot"
                     repeat_interval: 12h
                     routes:
-                        matchers:
-                            - alertname = "Watchdog"
-                            - alertname = "KubeControllerManagerDown"
-                            - alertname = "KubeProxyDown"
-                            - alertname = "KubeSchedulerDown"
-                            receiver: "null"
+                        - matchers:
+                              - alertname = "Watchdog"
+                              - alertname = "KubeControllerManagerDown"
+                              - alertname = "KubeProxyDown"
+                              - alertname = "KubeSchedulerDown"
+                          receiver: "null"
                 templates:
                     - /etc/alertmanager/config/*.tmpl
             templateFiles:
