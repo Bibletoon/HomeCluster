@@ -60,6 +60,8 @@ spec:
                 accessModes:
                     - ReadWriteOnce
         studio:
+            image:
+                tag: 20240819-375aacf
             environment:
                 STUDIO_DEFAULT_ORGANIZATION: "Bibleorg"
                 STUDIO_DEFAULT_PROJECT: "Bibleproject"
@@ -71,6 +73,8 @@ spec:
                     port: 3000
                 initialDelaySeconds: 3
         auth:
+            image:
+                tag: v2.159.2
             environment:
                 API_EXTERNAL_URL: https://supabase.bibletoon.xyz
                 GOTRUE_SITE_URL: https://supabase.bibletoon.xyz
@@ -131,4 +135,10 @@ spec:
                 initialDelaySeconds: 3
         vector:
             enabled: false
+        meta:
+            image:
+                tag: v0.84.0
+        functions:
+            image:
+                tag: v1.58.1
  
