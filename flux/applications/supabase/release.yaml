@@ -1,0 +1,133 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: supabase
+    namespace: supabase
+spec:
+    interval: 10m
+    chart:
+        spec:
+            chart: supabase
+            version: '1.0.x'
+            sourceRef:
+                kind: HelmRepository
+                name: supabase
+                namespace: supabase
+            interval: 1h
+    values:
+        secret:
+            jwt:
+                secretRef: jwt
+                secretRefKey:
+                    anonKey: anonKey
+                    serviceKey: serviceKey
+                    secret: secret
+            db:
+                secretRef: supabase-postgres-app
+                secretRefKey:
+                    username: username
+                    password: password
+                    database: dbname
+            analytics:
+                secretRef: supabase
+                secretRefKey:
+                    apiKey: analyticsApiKey
+            smtp:
+                secretRef: smtp
+                secretRefKey:
+                    username: user
+                    password: password
+            dashboard:
+                secretRef: supabase
+                secretRefKey:
+                    username: dashboardUsername
+                    password: dashboardPassword
+        db:
+            enabled: false
+        studio:
+            environment:
+                STUDIO_DEFAULT_ORGANIZATION: "Bibleorg"
+                STUDIO_DEFAULT_PROJECT: "Bibleproject"
+                SUPABASE_PUBLIC_URL: https://supabase.bibletoon.xyz/
+                NEXT_PUBLIC_ENABLE_LOGS: "true"
+            livenessProbe:
+                httpGet:
+                    path: /api/profile
+                    port: 3000
+                initialDelaySeconds: 3
+        auth:
+            environment:
+                DB_HOST: supabase-postgres-rw
+                API_EXTERNAL_URL: https://supabase.bibletoon.xyz
+                GOTRUE_SITE_URL: https://supabase.bibletoon.xyz
+                GOTRUE_EXTERNAL_EMAIL_ENABLED: "true"
+                GOTRUE_MAILER_AUTOCONFIRM: "true"
+                GOTRUE_SMTP_ADMIN_EMAIL: "alex8.ivanov@gmail.com"
+                GOTRUE_SMTP_HOST: "smtp.gmail.com"
+                GOTRUE_SMTP_PORT: "587"
+                GOTRUE_SMTP_SENDER_NAME: "no-reply@supabase.bibletoon.xyz"
+        rest:
+            environment:
+                DB_HOST: supabase-postgres-rw
+        realtime:
+            livenessProbe:
+                httpGet:
+                    path: /
+                    port: 4000
+                initialDelaySeconds: 3
+        meta:
+            environment:
+                DB_HOST: supabase-postgres-rw
+        storage:
+            environment:
+                DB_HOST: supabase-postgres-rw
+            persistence:
+                enabled: true
+                storageClassName: "longhorn"
+                size: 5Gi
+                accessModes:
+                    - ReadWriteOnce
+            livenessProbe:
+                httpGet:
+                    path: /status
+                    port: 5000
+                initialDelaySeconds: 3
+        improxy:
+            persistence:
+                enabled: true
+                storageClassName: "longhorn"
+                size: 5Gi
+                accessModes:
+                    - ReadWriteOnce
+            livenessProbe:
+                exec:
+                    command:
+                        - imgproxy
+                        - health
+                initialDelaySeconds: 3
+        kong:
+            environment:
+                KONG_LOG_LEVEL: info
+            ingress:
+                enabled: true
+                className: "traefik"
+                annotations: []
+                hosts:
+                    - host: supabase.bibletoon.xyz
+                      paths:
+                          - path: /
+                            pathType: prefix
+        analytics:
+            environment:
+                DB_HOST: supabase-postgres-rw
+            livenessProbe:
+                httpGet:
+                    path: /health
+                    port: 4000
+                initialDelaySeconds: 3
+        vector:
+            enabled: false
+        functions:
+            environment:
+                DB_HOST: supabase-postgres-rw
+ 
