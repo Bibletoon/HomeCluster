@@ -58,6 +58,8 @@ spec:
                 GOTRUE_SMTP_PORT: "587"
                 GOTRUE_SMTP_SENDER_NAME: "no-reply@supabase.bibletoon.xyz"
         realtime:
+            image:
+                tag: v2.27.5
             livenessProbe:
                 httpGet:
                     path: /
