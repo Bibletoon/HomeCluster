@@ -45,12 +45,14 @@ spec:
         db:
             enabled: true
             livenessProbe:
-            exec:
-                command:
-                    - pg_isready
-                    - -U
-                    - postgres
-            initialDelaySeconds: 3
+                exec:
+                    command:
+                        - pg_isready
+                        - -U
+                        - postgres
+                initialDelaySeconds: 3
+            image:
+                tag: 15.6.1.115
             persistence:
                 enabled: true
                 storageClassName: "longhorn"
