@@ -23,11 +23,11 @@ spec:
                     serviceKey: serviceKey
                     secret: secret
             db:
-                secretRef: supabase-postgres-app
+                secretRef: db
                 secretRefKey:
                     username: username
                     password: password
-                    database: dbname
+                    database: database
             analytics:
                 secretRef: supabase
                 secretRefKey:
@@ -43,7 +43,20 @@ spec:
                     username: dashboardUsername
                     password: dashboardPassword
         db:
-            enabled: false
+            enabled: true
+            livenessProbe:
+            exec:
+                command:
+                    - pg_isready
+                    - -U
+                    - postgres
+            initialDelaySeconds: 3
+            persistence:
+                enabled: true
+                storageClassName: "longhorn"
+                size: 10Gi
+                accessModes:
+                    - ReadWriteOnce
         studio:
             environment:
                 STUDIO_DEFAULT_ORGANIZATION: "Bibleorg"
@@ -57,7 +70,6 @@ spec:
                 initialDelaySeconds: 3
         auth:
             environment:
-                DB_HOST: supabase-postgres-rw
                 API_EXTERNAL_URL: https://supabase.bibletoon.xyz
                 GOTRUE_SITE_URL: https://supabase.bibletoon.xyz
                 GOTRUE_EXTERNAL_EMAIL_ENABLED: "true"
@@ -66,21 +78,13 @@ spec:
                 GOTRUE_SMTP_HOST: "smtp.gmail.com"
                 GOTRUE_SMTP_PORT: "587"
                 GOTRUE_SMTP_SENDER_NAME: "no-reply@supabase.bibletoon.xyz"
-        rest:
-            environment:
-                DB_HOST: supabase-postgres-rw
         realtime:
             livenessProbe:
                 httpGet:
                     path: /
                     port: 4000
                 initialDelaySeconds: 3
-        meta:
-            environment:
-                DB_HOST: supabase-postgres-rw
         storage:
-            environment:
-                DB_HOST: supabase-postgres-rw
             persistence:
                 enabled: true
                 storageClassName: "longhorn"
@@ -118,8 +122,6 @@ spec:
                           - path: /
                             pathType: prefix
         analytics:
-            environment:
-                DB_HOST: supabase-postgres-rw
             livenessProbe:
                 httpGet:
                     path: /health
@@ -127,7 +129,4 @@ spec:
                 initialDelaySeconds: 3
         vector:
             enabled: false
-        functions:
-            environment:
-                DB_HOST: supabase-postgres-rw
  
