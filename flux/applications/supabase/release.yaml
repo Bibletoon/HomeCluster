@@ -96,7 +96,6 @@ spec:
             ingress:
                 enabled: true
                 className: "traefik"
-                annotations: []
                 hosts:
                     - host: supabase.bibletoon.xyz
                       paths:
