@@ -144,7 +144,7 @@ spec:
           name: supabase
           valuesKey: analyticsApiKey
         - kind: Secret
-          targetPath: secret.smtp.user
+          targetPath: secret.smtp.username
           name: smtp
           valuesKey: user
         - kind: Secret
