@@ -96,11 +96,12 @@ spec:
             ingress:
                 enabled: true
                 className: "traefik"
+                annotations: []
                 hosts:
                     - host: supabase.bibletoon.xyz
                       paths:
                           - path: /
-                            pathType: prefix
+                            pathType: Prefix
         analytics:
             livenessProbe:
                 httpGet:
