@@ -25,7 +25,7 @@ spec:
             volumes:
                 config:
                     secret:
-                        secretName: stickerizer-config
+                        secretName: config
             volumeMounts:
                 config:
                     mountPath: /config
