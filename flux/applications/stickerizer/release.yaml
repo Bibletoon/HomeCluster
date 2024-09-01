@@ -32,5 +32,9 @@ spec:
             image:
                 repository: bibletoon/stickerizer
                 tag: 0.0.1
+            containerSecurityContext:
+                readOnlyRootFilesystem: true
+#               TODO: Fix
+                runAsNonRoot: false
         service:
             enabled: false
