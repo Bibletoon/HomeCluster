@@ -1,0 +1,35 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: stickerizer
+    namespace: stickerizer
+spec:
+    interval: 10m
+    chart:
+        spec:
+            chart: application
+            version: '4.2.6'
+            sourceRef:
+                kind: HelmRepository
+                name: stakater
+                namespace: stickerizer
+            interval: 1h
+    values:
+        applicationName: "stickerizer"
+        deployment:
+            enabled: true
+            reloadOnChange: true
+            env:
+                CONFIG_PATH: /config/values
+            volumes:
+                config:
+                    secret:
+                        secretName: stickerizer-config
+            volumeMounts:
+                config:
+                    mountPath: /config
+            image:
+                repository: bibletoon/stickerizer
+                tag: 0.0.1
+        service:
+            enabled: false
