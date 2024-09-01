@@ -20,7 +20,8 @@ spec:
             enabled: true
             reloadOnChange: true
             env:
-                CONFIG_PATH: /config/values
+                CONFIG_PATH:
+                    value: /config/values
             volumes:
                 config:
                     secret:
