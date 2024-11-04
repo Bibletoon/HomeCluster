@@ -15,6 +15,12 @@ spec:
                 namespace: wg-easy
             interval: 10m
     values:
+        image:
+            versionOverride: "14"
+        volume:
+            enabled: true
+            className: "longhorn"
+            size: 100m
         ingress:
             enabled: true
             className: traefik
