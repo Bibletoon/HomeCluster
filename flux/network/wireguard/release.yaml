@@ -16,7 +16,7 @@ spec:
             interval: 10m
     values:
         environmentVariables:
-            PASSWORD: ''
+            PASSWORD:
         image:
             versionOverride: "14"
         volume:
