@@ -5,8 +5,10 @@ metadata:
     namespace: kube-system
 spec:
     valuesContent: |-
-        accessLog:
-            addInternals: true
+        logs:
+            access:
+                enabled: true
+                addInternals: true
         api:
             dashboard: true
             insecure: true
