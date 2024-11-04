@@ -17,7 +17,8 @@ spec:
     values:
         service:
             type: LoadBalancer
-            loadBalancerIp: 192.168.1.201
+            annotations:
+                metallb.universe.tf/loadBalancerIPs: 192.168.1.201
         environmentVariables:
             PASSWORD:
         image:
