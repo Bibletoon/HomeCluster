@@ -33,7 +33,7 @@ spec:
         - kind: Secret
           targetPath: environmentVariables.WG_PASSWORD_HASH
           name: wg-easy
-          valuesKey: wg_password_hash
+          valuesKey: password_hash
         - kind: Secret
           targetPath: environmentVariables.WG_DEFAULT_DNS
           name: wg-easy
