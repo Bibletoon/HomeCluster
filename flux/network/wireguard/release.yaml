@@ -15,6 +15,9 @@ spec:
                 namespace: wg-easy
             interval: 10m
     values:
+        service:
+            type: LoadBalancer
+            loadBalancerIp: 192.168.1.201
         environmentVariables:
             PASSWORD:
         image:
