@@ -1,0 +1,40 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: wg-easy
+    namespace: wg-easy
+spec:
+    interval: 10m
+    chart:
+        spec:
+            chart: wg-easy
+            version: '0.1.x'
+            sourceRef:
+                kind: HelmRepository
+                name: wg-easy
+                namespace: wg-easy
+            interval: 10m
+    values:
+        ingress:
+            enabled: true
+            className: traefik
+            annotations:
+                - traefik.ingress.kubernetes.io/router.middlewares: default-allow-local-only@kubernetescrd
+            hosts:
+                - host: wg.home
+                  paths:
+                      - path: /
+                        pathType: Prefix
+    valuesFrom:
+        - kind: Secret
+          targetPath: environmentVariables.WG_HOST
+          name: wg-easy
+          valuesKey: wg_host
+        - kind: Secret
+          targetPath: environmentVariables.WG_PASSWORD_HASH
+          name: wg-easy
+          valuesKey: wg_password_hash
+        - kind: Secret
+          targetPath: environmentVariables.WG_DEFAULT_DNS
+          name: wg-easy
+          valuesKey: wg_default_dns
