@@ -16,7 +16,7 @@ spec:
             interval: 1h
     values:
         rcon:
-            type: ClusterIp
+            type: ClusterIP
         service:
             type: LoadBalancer
             port: 34197
