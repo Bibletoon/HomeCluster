@@ -15,8 +15,11 @@ spec:
                 namespace: factorio
             interval: 1h
     values:
+        rcon:
+            type: ClusterIp
         service:
             type: LoadBalancer
+            port: 34197
             annotations:
                 metallb.universe.tf/loadBalancerIPs: 192.168.1.202
         image:
