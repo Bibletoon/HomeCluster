@@ -7,7 +7,7 @@ spec:
     interval: 1h
     chart:
         spec:
-            chart: factorio
+            chart: factorio-server-charts
             version: '2.5.x'
             sourceRef:
                 kind: HelmRepository
