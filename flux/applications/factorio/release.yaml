@@ -26,7 +26,7 @@ spec:
         serverPassword:
             passwordSecret: factorio-server-secret
         image:
-            tag: 2.0.16
+            tag: 2.0.20
         persistence:
             enabled: true
             size: "5Gi"
