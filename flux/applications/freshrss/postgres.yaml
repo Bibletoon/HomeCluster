@@ -1,0 +1,13 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+    name: freshrss-postgres
+    namespace: freshrss
+spec:
+    instances: 2
+
+    storage:
+        storageClass: longhorn
+        size: 5Gi
+    monitoring:
+        enablePodMonitor: true
