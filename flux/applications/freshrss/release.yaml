@@ -43,10 +43,7 @@ spec:
               value: YvEq97IFP66ypS2vVQDL
         persistence:
             config:
-                enabled: true
-                storageClass: longhorn
-                size: 3Gi
-                accessMode: ReadWriteOnce
+                enabled: false
         ingress:
             main:
                 enabled: true
