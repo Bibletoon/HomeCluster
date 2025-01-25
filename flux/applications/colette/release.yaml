@@ -30,7 +30,7 @@ spec:
                 config:
                     mountPath: /config
             image:
-                repository: bibletoon/stickerizer
+                repository: bibletoon/colette
                 tag: 0.0.1
             containerSecurityContext:
                 readOnlyRootFilesystem: true
