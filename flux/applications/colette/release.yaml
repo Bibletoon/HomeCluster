@@ -1,0 +1,46 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: colette
+    namespace: colette
+spec:
+    interval: 10m
+    chart:
+        spec:
+            chart: application
+            version: '4.2.6'
+            sourceRef:
+                kind: HelmRepository
+                name: stakater
+                namespace: colette
+            interval: 1h
+    values:
+        applicationName: "stickerizer"
+        deployment:
+            enabled: true
+            reloadOnChange: true
+            env:
+                CONFIG_PATH:
+                    value: /config
+            volumes:
+                config:
+                    secret:
+                        secretName: config
+            volumeMounts:
+                config:
+                    mountPath: /config
+            image:
+                repository: bibletoon/stickerizer
+                tag: 0.0.1
+            containerSecurityContext:
+                readOnlyRootFilesystem: true
+                runAsNonRoot: true
+        service:
+            enabled: true
+        ingress:
+            enabled: true
+            ingressClassName: traefik
+            hosts:
+                - host: colette.local
+                  paths:
+                      - path: /
