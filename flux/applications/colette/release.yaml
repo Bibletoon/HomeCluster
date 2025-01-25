@@ -34,7 +34,7 @@ spec:
                 tag: 0.0.1
             containerSecurityContext:
                 readOnlyRootFilesystem: true
-                runAsNonRoot: true
+                runAsNonRoot: false
         service:
             enabled: true
         ingress:
