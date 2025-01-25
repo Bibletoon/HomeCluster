@@ -15,7 +15,7 @@ spec:
                 namespace: colette
             interval: 1h
     values:
-        applicationName: "stickerizer"
+        applicationName: "colette"
         deployment:
             enabled: true
             reloadOnChange: true
