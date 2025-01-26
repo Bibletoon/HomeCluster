@@ -25,7 +25,7 @@ spec:
                 hosts:
                     - prometheus.home
             prometheusSpec:
-                replicas: 1
+                replicas: 2
                 ruleSelectorNilUsesHelmValues: false
                 ruleSelector: {}
                 serviceMonitorSelectorNilUsesHelmValues: false
@@ -184,7 +184,7 @@ spec:
                                 <a href="{{ .ExternalURL }}">📲 Grafana</a>
                                 {{- end -}}
             alertmanagerSpec:
-                replicas: 1
+                replicas: 2
                 storage:
                     volumeClaimTemplate:
                         spec:
