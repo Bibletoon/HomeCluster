@@ -1,0 +1,13 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+annotations:
+    traefik.ingress.kubernetes.io/router.priority: "2"
+metadata:
+    namespace: error-pages
+    name: default-ingress
+spec:
+    defaultBackend:
+        service:
+            name: error-pages
+            port:
+                number: 8080
