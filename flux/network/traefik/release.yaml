@@ -1,0 +1,34 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: traefik
+    namespace: traefik
+spec:
+    interval: 10m
+    chart:
+        spec:
+            chart: traefik
+            version: '34.4.0'
+            sourceRef:
+                kind: HelmRepository
+                name: traefik
+                namespace: traefik
+            interval: 10m
+    values:
+        service:
+            spec:
+                loadBalancerIP: "192.168.2.101"
+                externalTrafficPolicy: Local
+        providers:
+            kubernetesCRD:
+                allowCrossNamespace: true
+        ports:
+            web:
+                redirections:
+                    entryPoint:
+                        to: websecure
+                        permanent: true
+                        scheme: https
+            websecure:
+                middlewares:
+                    - error-pages-redirect-middleware@kubernetescrd
