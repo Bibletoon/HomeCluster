@@ -29,6 +29,3 @@ spec:
                         to: websecure
                         permanent: true
                         scheme: https
-            websecure:
-                middlewares:
-                    - error-pages-redirect-middleware@kubernetescrd
