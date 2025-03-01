@@ -1,0 +1,205 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: prometheus-stack
+    namespace: prometheus-stack
+spec:
+    interval: 10m
+    chart:
+        spec:
+            chart: kube-prometheus-stack
+            version: '61.9.x'
+            sourceRef:
+                kind: HelmRepository
+                name: prometheus-community
+                namespace: prometheus-stack
+            interval: 10m
+    values:
+        namespaceOverride: prometheus-stack
+        prometheus:
+            ingress:
+                enabled: true
+                ingressClassName: traefik
+                annotations:
+                    traefik.ingress.kubernetes.io/router.middlewares: default-allow-local-only@kubernetescrd
+                hosts:
+                    - prometheus.bibletoon.home
+            service:
+                type: LoadBalancer
+            prometheusSpec:
+                replicas: 3
+                ruleSelectorNilUsesHelmValues: false
+                ruleSelector: {}
+                serviceMonitorSelectorNilUsesHelmValues: false
+                serviceMonitorSelector: {}
+                serviceMonitorNamespaceSelector: {}
+                podMonitorSelectorNilUsesHelmValues: false
+                podMonitorSelector: {}
+                podMonitorNamespaceSelector: {}
+                probeSelectorNilUsesHelmValues: false
+                probeSelector: {}
+                probeNamespaceSelector: {}
+                scrapeConfigSelectorNilUsesHelmValues: false
+                scrapeConfigSelector: {}
+                scrapeConfigNamespaceSelector: {}
+                persistentVolumeClaimRetentionPolicy:
+
+                retention: 5d
+                retentionSize: 45GB
+                storageSpec:
+                    volumeClaimTemplate:
+                        spec:
+                            storageClassName: "longhorn-single-replica"
+                            accessModes: ["ReadWriteOnce"]
+                            resources:
+                                requests:
+                                    storage: 50Gi
+        grafana:
+            ingress:
+                enabled: true
+                ingressClassName: traefik
+                hosts:
+                    - grafana.bibletoon.xyz
+            persistence:
+                enabled: true
+                storageClassName: "longhorn"
+                accessModes:
+                    - ReadWriteMany
+                size: 5Gi
+            envFromSecret: grafana-auth
+            grafana.ini:
+                server:
+                    root_url: 'https://grafana.bibletoon.xyz/'
+        kubeEtcd:
+            enabled: true
+            endpoints:
+                - 192.168.2.11
+                - 192.168.2.21
+                - 192.168.2.31
+            service:
+                enabled: true
+                port: 2381
+                targetPort: 2381
+        alertmanager:
+            tplConfig: true
+            config:
+                global:
+                    resolve_timeout: 5m
+                inhibit_rules:
+                    - equal:
+                          - namespace
+                          - alertname
+                      source_matchers:
+                          - severity = critical
+                      target_matchers:
+                          - severity =~ warning|info
+                    - equal:
+                          - namespace
+                          - alertname
+                      source_matchers:
+                          - severity = warning
+                      target_matchers:
+                          - severity = info
+                    - equal:
+                          - namespace
+                      source_matchers:
+                          - alertname = InfoInhibitor
+                      target_matchers:
+                          - severity = info
+                    - target_matchers:
+                          - alertname = InfoInhibitor
+                receivers:
+                    - name: "null"
+                    - name: 'telegram_bot'
+                      telegram_configs:
+                          - bot_token: '{{ .Values.telegram_token }}'
+                            api_url: 'https://api.telegram.org'
+                            chat_id: 412750554
+                            parse_mode: 'HTML'
+                            message: '{{ "{{ template \"telegram.message\" . }}" }}'
+                route:
+                    group_by:
+                        - namespace
+                    group_interval: 5m
+                    group_wait: 30s
+                    receiver: "telegram_bot"
+                    repeat_interval: 12h
+                    routes:
+                        - matchers:
+                              - alertname = "Watchdog"
+                              - alertname = "KubeControllerManagerDown"
+                              - alertname = "KubeProxyDown"
+                              - alertname = "KubeSchedulerDown"
+                          receiver: "null"
+                templates:
+                    - /etc/alertmanager/config/*.tmpl
+            templateFiles:
+                telegram.tmpl: |-
+                                {{ define "__alerts_list" -}}
+                                {{ range . }}
+                                {{if ne (index .Labels "alertname") "" -}}
+                                {{ if eq .Status "firing" }}🔴{{ else }}🟢{{ end }}
+                                    {{- if ne (index .Labels "severity") "" -}}
+                                        <u><b>[{{ index .Labels "severity" }}]</b></u> {{ end -}}
+                                <b>{{ index .Labels "alertname" }}</b> 🕙 {{ .StartsAt.Format "15:04:05    🗓️ 2006-01-02" }}{{ end -}}
+                                {{ if len .Annotations }}
+                                <i>Annotations:</i>
+                                    {{ range .Annotations.SortedPairs -}}
+                                    - {{ .Name }}: {{ .Value }}
+                                    {{ end -}}
+                                {{ end }}
+                                {{ if len .Labels -}}
+                                <i>Labels:</i>
+                                    {{ range .Labels.SortedPairs -}}
+                                    - {{ .Name }}: {{ .Value }}
+                                    {{ end -}}
+                                {{ end }}
+                                <i>Value:</i> {{ .ValueString }}
+                                    {{- if gt (len .GeneratorURL) 0 }}<a href="{{ .GeneratorURL }}">source</a>  |  {{ end }}
+                                    {{- if gt (len .SilenceURL) 0 }}<a href="{{ .SilenceURL }}">🔕 silence</a>  |  {{ end }}
+                                    {{- if gt (len .DashboardURL) 0 }}📁 <a href="{{ .DashboardURL }}">dashboard</a>  |  {{ end }}
+                                    {{- if gt (len .PanelURL) 0 }}<a href="{{ .PanelURL }}">panel</a> {{- end -}}
+                                    --------
+                                {{- end -}} {{- /* range */ -}}
+                                {{- end -}} {{- /* define __alerts_list */ -}}
+
+                                {{ define "__telegram.title" -}}
+                                {{ if ne (index .CommonLabels "severity") "" }} <u><b>{{ index .CommonLabels "severity" }}</b></u> {{ end -}}
+                                {{ if ne (index .CommonLabels "alertname") "" -}}
+                                    [{{ index .CommonLabels "alertname" }}]
+                                {{- end -}}
+                                {{- end -}}{{- /* define __telegram */ -}}
+
+                                {{ define "telegram.message" }}
+                                    {{ if gt (len .Alerts.Firing) 0 }}
+                                    🚨 <b>ALARM</b> (#{{ .Alerts.Firing | len }})
+                                    {{- template "__alerts_list" .Alerts.Firing }}{{ end -}}
+                                    {{ if gt (len .Alerts.Resolved) 0 }}
+                                    ✅ <b>RESOLVED</b>{{ template "__telegram.title" . }} (#{{ .Alerts.Resolved | len }})
+                                    {{- template "__alerts_list" .Alerts.Resolved }}{{ end }}
+
+                                <a href="{{ .ExternalURL }}">📲 Grafana</a>
+                                {{- end -}}
+            alertmanagerSpec:
+                replicas: 3
+                storage:
+                    volumeClaimTemplate:
+                        spec:
+                            storageClassName: "longhorn-single-replica"
+                            accessModes: ["ReadWriteOnce"]
+                            resources:
+                                requests:
+                                    storage: 5Gi
+            ingress:
+                enabled: true
+                ingressClassName: traefik
+                annotations:
+                    traefik.ingress.kubernetes.io/router.middlewares: default-allow-local-only@kubernetescrd
+                hosts:
+                    - alerts.bibletoon.home
+    valuesFrom:
+        - kind: Secret
+          targetPath: telegram_token
+          name: telegram
+          valuesKey: token
+

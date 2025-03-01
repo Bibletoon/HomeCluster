@@ -1,0 +1,12 @@
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: telegram
+  namespace: prometheus-stack
+spec:
+  encryptedData:
+    token: AgAV/bmiXg39yOjujbzhetcf/WZ1erP/Gv6R8meHYkbmDxWB38+e5Rsli4v+GSIs5zmRA/+Qkr6Ly1vvi5eHak5q3cf9Xj0EwG9IkT4xoT4TG+jsui9X18191BktFGcdnA1h/0GYgOeBYi5JT7iLQEyHeM2zFnjyR2bvogRbG0eYq4JFZOmAHsBsVrhnwCtLsAO6YYpUWvf5OLLM3iTlJlOSo5c1nUNkQ92IOP4npR4b5ZiAJ9+jdaRNbbN05ssdnY339tWy1zPcIAlg8mo1GhFh/XPeMcL96fmKvWcUEuztDV59r1783JjRF5lKztqMpuGIZ4a0UGRocgnMMGkIbS/egiCNcLHer9hMU3G6SMb9s7OG/LLH7u/tcJ7LY6phHJJq+dCug8fr2rnTI2pEJAJcMGJH6ZygxUADbwY/Gt2ny0wWPmG+/wKTngPFfmG6XW7ONdahDH7iefbKWdwzT6quOxwnYIo+eZEE4766yEQuCVnxW3TPCtnQuGLQxPqadXHDV6UCUPis6ee2/ii6k9xkNKUdJEq/53yO6EJyIyf0gBFGf4d1g61E7Iaw5TSepTZ8wt0EoJlJU0nqFx9eX5vBKsR0FdIzqSlr88DtZLAAGeuZ/emc4pBtzLdRgDTE4tuQ2pPXwjmyDasJgvG0JaF8OapRZTFQY6m+PUJVx4DC466hZxWHVm7Mgxn6+fE0n2DC/Ogb+P1YPwUicWc2ouKsS4ft40DCNvCGl92tlLs5Flk06TS7eCo9uceBUSOj
+  template:
+    metadata:
+      name: telegram
+      namespace: prometheus-stack
