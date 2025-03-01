@@ -64,9 +64,8 @@ spec:
                 enabled: true
                 storageClassName: "longhorn"
                 accessModes:
-                    - ReadWriteMany
+                    - ReadWriteOnce
                 size: 5Gi
-            envFromSecret: grafana-auth
             grafana.ini:
                 server:
                     root_url: 'https://grafana.bibletoon.xyz/'
