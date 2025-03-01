@@ -8,24 +8,23 @@ spec:
     chart:
         spec:
             chart: loki-stack
-            version: '6.27.x'
+            version: '2.10.x'
             sourceRef:
                 kind: HelmRepository
                 name: grafana
                 namespace: loki
             interval: 1h
     values:
-        gateway:
-            service:
-                type: LoadBalancer
-                loadBalancerIP: 192.168.2.102
         loki:
             auth_enabled: false
             persistence:
                 enabled: true
                 size: 10Gi
                 storageClassName: longhorn
+            image:
+                tag: 2.9.7
         promtail:
             tolerations:
                 - operator: Exists
 
+ 
