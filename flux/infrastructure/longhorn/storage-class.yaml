@@ -1,0 +1,16 @@
+kind: StorageClass
+metadata:
+  name: longhorn-single-replica
+provisioner: driver.longhorn.io
+parameters:
+  dataEngine: v1
+  dataLocality: disabled
+  disableRevisionCounter: 'true'
+  fromBackup: ''
+  fsType: ext4
+  numberOfReplicas: '1'
+  staleReplicaTimeout: '30'
+  unmapMarkSnapChainRemoved: ignored
+reclaimPolicy: Delete
+allowVolumeExpansion: true
+volumeBindingMode: Immediate
