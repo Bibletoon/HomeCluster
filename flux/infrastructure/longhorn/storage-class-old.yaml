@@ -1,11 +1,11 @@
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: longhorn-sr
+  name: longhorn-single-replica
 provisioner: driver.longhorn.io
 parameters:
   dataEngine: v1
-  dataLocality: "strict-local"
+  dataLocality: disabled
   disableRevisionCounter: 'true'
   fromBackup: ''
   fsType: ext4
