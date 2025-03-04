@@ -5,7 +5,7 @@ metadata:
 provisioner: driver.longhorn.io
 parameters:
   dataEngine: v1
-  dataLocality: disabled
+  dataLocality: "strict-local"
   disableRevisionCounter: 'true'
   fromBackup: ''
   fsType: ext4
