@@ -46,7 +46,7 @@ spec:
                 repository: ghcr.io/toeverything/affine-graphql
                 tag: stable
             containerSecurityContext:
-                readOnlyRootFilesystem: true
+                readOnlyRootFilesystem: false
                 runAsNonRoot: false
         service:
             enabled: true
