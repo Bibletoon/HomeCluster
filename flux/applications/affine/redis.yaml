@@ -18,7 +18,7 @@ spec:
         persistence:
             enabled: true
             size: 5Gi
-            storageClassName: longhorn
+            storageClassName: longhorn-sr
         replica:
             replicaCount: 2
         auth:
