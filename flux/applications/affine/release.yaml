@@ -1,0 +1,65 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: affine
+    namespace: affine
+spec:
+    interval: 10m
+    chart:
+        spec:
+            chart: application
+            version: '4.2.6'
+            sourceRef:
+                kind: HelmRepository
+                name: stakater
+                namespace: application
+            interval: 1h
+    values:
+        applicationName: "affine"
+        deployment:
+            enabled: true
+            initContainers:
+                - name: affine_migration_job
+                  image: ghcr.io/toeverything/affine-graphql:stable
+                  command: ['sh', '-c', 'node ./scripts/self-host-predeploy.js']
+            envFrom:
+                - secretRef:
+                      name: affine-config
+            volumes:
+                name: affine-storage
+                persistenceVolumeClaim:
+                    claimName: affine-storage
+            volumeMounts:
+                - mountPath: /root/.affine/storage
+                  name: affine-storage
+                  subPath: storage
+                - mountPath: /root/.affine/config
+                  name: affine-storage
+                  subPath: config
+            image:
+                repository: ghcr.io/toeverything/affine-graphql
+                tag: stable
+            persistence:
+                enabled: true
+                mountPVC: false
+                storageClass: longhorn
+                name: affine-storage
+                storageSize: 10Gi
+                volumeName: affine-storage
+            containerSecurityContext:
+                readOnlyRootFilesystem: true
+                runAsNonRoot: false
+        service:
+            enabled: true
+            ports:
+                - name: http
+                  port: 3100
+                  protocol: TCP
+                  targetPort: 3100
+        ingress:
+            enabled: true
+            ingressClassName: traefik
+            hosts:
+                - host: affine.bibletoon.xyz
+                  paths:
+                      - path: /
