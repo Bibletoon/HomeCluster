@@ -31,10 +31,10 @@ spec:
                   name: affine-config
             volumes:
                 affine-storage:
-                  persistenceVolumeClaim:
+                  persistentVolumeClaim:
                     claimName: affine-storage
                 affine-config:
-                  persistenceVolumeClaim:
+                  persistentVolumeClaim:
                     claimName: affine-config
             volumeMounts:
                 affine-storage:
