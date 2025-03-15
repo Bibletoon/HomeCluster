@@ -17,6 +17,7 @@ spec:
     values:
         applicationName: "affine"
         deployment:
+            reloadOnChange: true
             enabled: true
             initContainers:
                 affine-migration-job:
