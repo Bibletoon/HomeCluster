@@ -19,33 +19,29 @@ spec:
         deployment:
             enabled: true
             initContainers:
-                - name: affine_migration_job
+                affine_migration_job:
                   image: 'ghcr.io/toeverything/affine-graphql:stable'
                   command: ['sh', '-c', 'node ./scripts/self-host-predeploy.js']
             envFrom:
-                - secretRef:
-                      name: affine-config
+                - type: secret
+                  name: affine-config
             volumes:
-                name: affine-storage
-                persistenceVolumeClaim:
+                affine-storage:
+                  persistenceVolumeClaim:
                     claimName: affine-storage
+                affine-config:
+                  persistenceVolumeClaim:
+                    claimName: affine-config
             volumeMounts:
-                - mountPath: /root/.affine/storage
-                  name: affine-storage
+                affine-storage:
+                  mountPath: /root/.affine/storage
                   subPath: storage
-                - mountPath: /root/.affine/config
-                  name: affine-storage
+                affine-config:
+                  mountPath: /root/.affine/config
                   subPath: config
             image:
                 repository: ghcr.io/toeverything/affine-graphql
                 tag: stable
-            persistence:
-                enabled: true
-                mountPVC: false
-                storageClass: longhorn
-                name: affine-storage
-                storageSize: 10Gi
-                volumeName: affine-storage
             containerSecurityContext:
                 readOnlyRootFilesystem: true
                 runAsNonRoot: false
