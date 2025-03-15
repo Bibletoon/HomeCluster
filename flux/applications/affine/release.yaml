@@ -19,7 +19,7 @@ spec:
         deployment:
             enabled: true
             initContainers:
-                affine_migration_job:
+                affine-migration-job:
                   image: 'ghcr.io/toeverything/affine-graphql:stable'
                   command: ['sh', '-c', 'node ./scripts/self-host-predeploy.js']
             envFrom:
