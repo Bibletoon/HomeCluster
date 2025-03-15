@@ -1,7 +1,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: affine-config
+  name: affine-storage
   namespace: affine
 spec:
   accessModes:
