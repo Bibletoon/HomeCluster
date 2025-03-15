@@ -22,6 +22,9 @@ spec:
                 affine-migration-job:
                   image: 'ghcr.io/toeverything/affine-graphql:stable'
                   command: ['sh', '-c', 'node ./scripts/self-host-predeploy.js']
+                  envFrom:
+                    - secretRef:
+                        name: affine-config
             envFrom:
                 - type: secret
                   name: affine-config
