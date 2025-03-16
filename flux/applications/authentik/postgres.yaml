@@ -4,6 +4,7 @@ metadata:
     name: authentik-postgres
     namespace: authentik
 spec:
+    instances: 3
     storage:
         storageClass: longhorn-sr
         size: 10Gi
