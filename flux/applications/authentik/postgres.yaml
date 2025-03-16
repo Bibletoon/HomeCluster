@@ -1,0 +1,11 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+    name: authentik-postgres
+    namespace: authentik
+spec:
+    storage:
+        storageClass: longhorn-sr
+        size: 10Gi
+    monitoring:
+        enablePodMonitor: true

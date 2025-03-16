@@ -1,0 +1,12 @@
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: authentik-key
+  namespace: authentik
+spec:
+  encryptedData:
+    key: AgA0xOnPnnBtsT3FwoFAMDj5cjmqS7HFFDpxSUFpWCZP7/LJwJ1ym+VnemJFoURz/sDdLP1oOc+hE9ZK1iHH07DM9u2uhMuH+bIdoP3GsX62/7xVuyIt/Lz7Y5IKRsHaOW2qeqUCO8QL12RfcrqQS1rQhRMK2bjRP5TvSOw08vVYa242cCsKXsAFCvGjNTM+FlRuMNm4EXCFdtYsNZQ1y/BQzzVzMsypbyHgaXiJdepGaU+9KlJh6Dt4qNCe+QeszD47laFyfGpCnqcSbpZ210FIWjfgH36jzzTq2Oe//VdDm/uN097NeBA7zKvaBcvroy+UFXSJn3cgSfG9YWP4mt9BZFKQak+j+OEzqnXCUsj6SaRGeJ6TGn0a67SHb2q7IgC4hBt2E6PEOICFXKXR3DLzfMtCU8HPtFcVIKZLn5L1awyx7muXxA+G+R/JpKZjeG4jXLNlErz0vDKvwHg+IRLFnqv93HTGk7Sa0vmirypLhikNswJmTtQNKFW/VZA27hZAslFQgglmUNRBVto5qMoaJmbedNNpmeaBHLnsOupMzIcKeHsB513o8aYKD8uBLNB6iAQKUz3GA4wch0wngSQexrQh7cXc3An4J00Eg7jEqIQtE+e5H8fUT5KlBK8DMQapMARUzuW5LrCHoayJ/Da2yIpiZ9AY87z6TsSxEAA5Fc60IXVtWeDjnAlxUo+3eDg83hn+9od6XzxiQtJw+UwdmuUk+gN8S1RtrcezF+OT0g==
+  template:
+    metadata:
+      name: authentik-key
+      namespace: authentik
