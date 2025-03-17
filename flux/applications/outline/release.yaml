@@ -29,7 +29,9 @@ spec:
                 readOnlyRootFilesystem: false
                 runAsNonRoot: true
                 runAsUser: 1001
-            resources: {}
+            resources:
+                requests: {}
+                limits: {}
         persistence:
             enabled: true
             mountPVC: true
