@@ -28,6 +28,7 @@ spec:
             containerSecurityContext:
                 readOnlyRootFilesystem: false
                 runAsNonRoot: false
+            resources: {}
         persistence:
             enabled: true
             mountPVC: true
