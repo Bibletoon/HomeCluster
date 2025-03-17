@@ -28,6 +28,7 @@ spec:
             containerSecurityContext:
                 readOnlyRootFilesystem: false
                 runAsNonRoot: true
+                runAsUser: 1001
             resources: {}
         persistence:
             enabled: true
