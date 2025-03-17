@@ -29,9 +29,15 @@ spec:
                 readOnlyRootFilesystem: false
                 runAsNonRoot: true
                 runAsUser: 1001
+                fsGroup: 1001
+                fsGroupChangePolicy: 'onRootMismatch'
             resources:
-                requests: {}
-                limits: {}
+                requests:
+                    cpu: 0.5
+                    memory: "512Mi"
+                limits:
+                    cpu: 1
+                    memory: "1Gi"
         persistence:
             enabled: true
             mountPVC: true
