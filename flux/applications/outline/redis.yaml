@@ -1,0 +1,31 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: outline-redis
+    namespace: outline
+spec:
+    interval: 10m
+    chart:
+        spec:
+            chart: redis
+            version: '20.0.x'
+            sourceRef:
+                kind: HelmRepository
+                name: bitnamicharts
+                namespace: redis
+            interval: 1h
+    values:
+        persistence:
+            enabled: true
+            size: 3Gi
+            storageClassName: longhorn-sr
+        replica:
+            replicaCount: 2
+        auth:
+            enabled: true
+            existingSecret: "redis-password"
+            existingSecretPasswordKey: "password"
+        metrics:
+            enabled: true
+            serviceMonitor:
+                enabled: true
