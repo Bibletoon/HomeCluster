@@ -27,7 +27,7 @@ spec:
                 tag: 0.82.0
             containerSecurityContext:
                 readOnlyRootFilesystem: false
-                runAsNonRoot: false
+                runAsNonRoot: true
             resources: {}
         persistence:
             enabled: true
