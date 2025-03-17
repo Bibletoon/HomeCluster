@@ -35,7 +35,7 @@ spec:
                 runAsNonRoot: true
                 runAsUser: 1001
                 fsGroup: 1001
-                fsGroupChangePolicy: 'onRootMismatch'
+                fsGroupChangePolicy: 'OnRootMismatch'
             resources:
                 requests:
                     cpu: 0.5
