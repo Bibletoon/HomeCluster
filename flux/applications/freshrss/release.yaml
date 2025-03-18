@@ -44,6 +44,7 @@ spec:
         persistence:
             config:
                 enabled: true
+                mountPath: /var/www/FreshRSS/data
         ingress:
             main:
                 enabled: true
