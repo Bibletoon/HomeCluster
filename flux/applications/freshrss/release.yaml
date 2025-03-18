@@ -1,0 +1,54 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: freshrss
+    namespace: freshrss
+spec:
+    interval: 10m
+    chart:
+        spec:
+            chart: freshrss
+            version: '7.0.x'
+            sourceRef:
+                kind: HelmRepository
+                name: k8s-home-lab
+                namespace: freshrss
+            interval: 1h
+    values:
+        image:
+            repository: freshrss/freshrss
+            tag: 1.24.1
+        env:
+            - name: OIDC_CLIENT_ID
+              valueFrom:
+                  secretKeyRef:
+                      name: freshrss-oidc
+                      key: clientId
+            - name: OIDC_CLIENT_SECRET
+              valueFrom:
+                  secretKeyRef:
+                      name: freshrss-oidc
+                      key: clientSecret
+            - name: OIDC_ENABLED
+              value: 1
+            - name: OIDC_PROVIDER_METADATA_URL
+              value: https://auth.bibletoon.xyz/application/o/freshrss/.well-known/openid-configuration
+            - name: OIDC_X_FORWARDED_HEADERS
+              value: X-Forwarded-Port X-Forwarded-Proto X-Forwarded-Host
+            - name: OIDC_SCOPES
+              value: openid email profile
+            - name: OIDC_REMOTE_USER_CLAIM
+              value: preferred_username
+            - name: OIDC_CLIENT_CRYPTO_KEY
+              value: YvEq97IFP66ypS2vVQDL
+        persistence:
+            config:
+                enabled: false
+        ingress:
+            main:
+                enabled: true
+                ingressClassName: traefik
+                hosts:
+                    - host: rss.bibletoon.xyz
+                      paths:
+                          - path: /
