@@ -43,7 +43,7 @@ spec:
               value: YvEq97IFP66ypS2vVQDL
         persistence:
             config:
-                enabled: false
+                enabled: true
         ingress:
             main:
                 enabled: true
