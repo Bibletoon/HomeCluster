@@ -1,0 +1,61 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: vaultwarden
+    namespace: vaultwarden
+spec:
+    interval: 5m
+    chart:
+        spec:
+            chart: vaultwarden
+            version: '0.24.x'
+            sourceRef:
+                kind: HelmRepository
+                name: vaultwarden
+                namespace: vaultwarden
+            interval: 1h
+    values:
+        ingress:
+            enabled: true
+            class: "traefik"
+            nginxIngressAnnotations: false
+            hostname: "vaultwarden.bibletoon.xyz"
+        smtp:
+            host: "smtp.gmail.com"
+            from: "noreply@vaultwarden.bibletoon.xyz"
+            existingSecret: smtp
+            username:
+                existingSecretKey: user
+            password:
+                existingSecretKey: password
+        adminToken:
+            existingSecret: vaultwarden-secret
+            existingSecretKey: adminToken
+        signupsAllowed: false
+        domain: "https://vaultwarden.bibletoon.xyz"
+        database:
+            type: "postgresql"
+        data:
+            name: "vaultwarden-data"
+            size: "3Gi"
+            class: longhorn
+            accessMode: ReadWriteOnce
+    valuesFrom:
+        - kind: Secret
+          targetPath: database.dbName
+          name: vaultwarden-pg-app
+          valuesKey: dbname
+        - kind: Secret
+          targetPath: database.host
+          name: vaultwarden-pg-app
+          valuesKey: host
+        - kind: Secret
+          targetPath: database.username
+          name: vaultwarden-pg-app
+          valuesKey: user
+        - kind: Secret
+          targetPath: database.password
+          name: vaultwarden-pg-app
+          valuesKey: password
+
+
