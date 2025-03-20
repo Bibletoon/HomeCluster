@@ -1,8 +1,0 @@
-apiVersion: source.toolkit.fluxcd.io/v1
-kind: HelmRepository
-metadata:
-    name: wakapi
-    namespace: wakapi
-spec:
-    interval: 1h
-    url: https://bibletoon.github.io/Charts
