@@ -15,6 +15,8 @@ spec:
                 namespace: traefik
             interval: 10m
     values:
+        deployment:
+            replicas: 3
         service:
             spec:
                 loadBalancerIP: "192.168.2.101"
