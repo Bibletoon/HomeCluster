@@ -34,7 +34,7 @@ spec:
             db:
                 dialect: postgres
             security:
-                allow_signup: true
+                allow_signup: false
     valuesFrom:
         - kind: Secret
           targetPath: wakapi_config.security.password_salt
