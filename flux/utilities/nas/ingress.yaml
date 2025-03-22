@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nas-nextcloud-ingress
+  namespace: nas
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: nc.bibletoon.xyz
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nas
+                port:
+                  number: 30027
