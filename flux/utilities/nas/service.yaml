@@ -5,9 +5,7 @@ metadata:
   namespace: nas
 spec:
   type: ClusterIP
-  clusterIP: None
   ports:
-    - name: http
-      protocol: TCP
-      port: 80
+    - protocol: TCP
+      port: 30027
       targetPort: 30027
