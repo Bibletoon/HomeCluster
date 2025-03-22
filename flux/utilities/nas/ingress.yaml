@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    namespace: nas
+    name: nextcloud-ingress
+spec:
+    rules:
+        - host: nc.bibletoon.xyz
+          http:
+              paths:
+                  - path: /
+                    pathType: Prefix
+                    backend:
+                        service:
+                            name: nas-service
+                            port:
+                                number: 30027

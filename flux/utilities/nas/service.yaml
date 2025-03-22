@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: nas-service
+  namespace: nas
+spec:
+  ipFamilies:
+  - IPv4
+  ports:
+    - name: nextcloud
+      protocol: TCP
+      port: 30027
+  type: ExternalName
+  externalName: 192.168.2.60
