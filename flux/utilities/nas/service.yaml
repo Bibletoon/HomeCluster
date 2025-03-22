@@ -4,8 +4,6 @@ metadata:
   name: nas-service
   namespace: nas
 spec:
-  ipFamilies:
-  - IPv4
   ports:
     - name: nextcloud
       protocol: TCP
