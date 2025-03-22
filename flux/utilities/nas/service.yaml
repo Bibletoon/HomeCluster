@@ -4,5 +4,5 @@ metadata:
   name: nas-service
   namespace: nas
 spec:
-  type: ClusterIp
+  type: ClusterIP
   clusterIP: None
