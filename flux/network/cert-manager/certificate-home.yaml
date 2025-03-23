@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+    name: wildcard-bibletoon-xyz
+    namespace: kube-system
+spec:
+    secretName: wildcard-biblehome-tls
+    issuerRef:
+        name: cloudflare-issuer
+        kind: ClusterIssuer
+    dnsNames:
+        - "*.biblehome.xyz"
+        - "biblehome.xyz"
