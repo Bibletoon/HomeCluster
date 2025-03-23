@@ -18,6 +18,7 @@ spec:
         ingress:
             enabled: true
             host: "longhorn.biblehome.xyz"
+            tls: true
             tlsSecret: wildcard-biblehome-tls
             annotations:
                 traefik.ingress.kubernetes.io/router.middlewares: default-allow-local-only@kubernetescrd
