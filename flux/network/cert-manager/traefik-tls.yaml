@@ -4,5 +4,7 @@ metadata:
     name: default
     namespace: kube-system
 spec:
+    certificates:
+        - secretName: wildcard-biblehome-tls
     defaultCertificate:
         secretName: wildcard-bibletoon-tls
