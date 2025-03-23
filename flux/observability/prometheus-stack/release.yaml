@@ -23,7 +23,7 @@ spec:
                 annotations:
                     traefik.ingress.kubernetes.io/router.middlewares: default-allow-local-only@kubernetescrd
                 hosts:
-                    - prometheus.bibletoon.home
+                    - prometheus.biblehome.xyz
             service:
                 type: LoadBalancer
             prometheusSpec:
@@ -195,7 +195,7 @@ spec:
                 annotations:
                     traefik.ingress.kubernetes.io/router.middlewares: default-allow-local-only@kubernetescrd
                 hosts:
-                    - alerts.bibletoon.home
+                    - alerts.biblehome.xyz
     valuesFrom:
         - kind: Secret
           targetPath: telegram_token
