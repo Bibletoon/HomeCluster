@@ -1,8 +1,8 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-    name: joplyn-postgres
-    namespace: joplyn
+    name: joplin-postgres
+    namespace: joplin
 spec:
     instances: 3
 
