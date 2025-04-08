@@ -1,0 +1,34 @@
+applicationName: "joplin"
+deployment:
+    reloadOnChange: true
+    enabled: true
+    env:
+        DB_CLIENT:
+            value: pg
+        APP_BASE_URL:
+            value: https://joplin.bibletoon.xyz
+        APP_PORT:
+            value: "2300"
+    envFrom:
+        - type: secret
+          name: joplin-config
+    image:
+        repository: joplin/server
+        tag: latest
+    containerSecurityContext:
+        readOnlyRootFilesystem: false
+        runAsNonRoot: false
+service:
+    enabled: true
+    ports:
+        - name: http
+          port: 22300
+          protocol: TCP
+          targetPort: 22300
+ingress:
+    enabled: true
+    ingressClassName: traefik
+    hosts:
+        - host: joplin.bibletoon.xyz
+          paths:
+              - path: /
