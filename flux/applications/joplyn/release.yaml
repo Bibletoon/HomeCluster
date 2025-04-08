@@ -1,8 +1,8 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-    name: joplyn
-    namespace: joplyn
+    name: joplin
+    namespace: joplin
 spec:
     interval: 10m
     chart:
@@ -15,20 +15,17 @@ spec:
                 namespace: application
             interval: 1h
     values:
-        applicationName: "joplyn"
+        applicationName: "joplin"
         deployment:
             reloadOnChange: true
             enabled: true
             env:
-                - name: DB_CLIENT
-                  value: pg
-                - name: APP_BASE_URL
-                  value: https://joplyn.bibletoon.xyz
-                - name: APP_PORT
-                  value: 22300
+                DB_CLIENT: pg
+                APP_BASE_URL: https://joplin.bibletoon.xyz
+                APP_PORT: 22300
             envFrom:
                 - type: secret
-                  name: joplyn-config
+                  name: joplin-config
             image:
                 repository: joplin/server
                 tag: latest
@@ -45,6 +42,6 @@ spec:
             enabled: true
             ingressClassName: traefik
             hosts:
-                - host: joplyn.bibletoon.xyz
+                - host: joplin.bibletoon.xyz
                   paths:
                       - path: /
