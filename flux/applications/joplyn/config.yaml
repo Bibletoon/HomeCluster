@@ -1,0 +1,13 @@
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: joplyn-config
+  namespace: joplyn
+spec:
+  encryptedData:
+    POSTGRES_CONNECTION_STRING: AgBUMT+LazQy774EF9fwOiUGHBNTgSpPvZb3n+qubKyO7LeN1U+DU7jDoHMbau6SvOZh/rNGTSH6zzWklTIF5DFYHE4aataVDKsQlRiYrr9IYu63rE8I0plAmlVV9/gg07f7QVwsUp+T03bzeuFVR3xiM68a2RFQDSacTq4xlLf9m7mupV/tuYXfPx7TgVh3aICP6wa9oFNcigUJe2ZdEyVIayt859bINpSuJbkd1pOul6MZZRVDY7h/449MSCHjMQoc/0YrwucH+AgGLZ65qF9VDY9hIMPGXiJtaRaQ2od8ES4Fn4X4VZBYF2N46TXtPm2Hfgdh2h8wENxGWM3TiYmVk/SEZfgFI5rgD1pj4xjyln3zMKzvwwI0/+gIvcKyg52TJ7e7ecivP/O/6SPfJEkcJGmricVcY5g8GDsH9L5FIuG1kEOmIu1rjOJqJ4nP7tauMN5jAOpPw3GRlUqxEAjU7dNdWrCHB1G2UY3PKJrplRaxaKo4LXyqUR8c97g5MTTPy8ShLnp2yK6f79Wg/XirQXYyA7dmsTftCetTXe+lr+EWHqqSbFK6d6fbLp9Tav12WSYyXl2bAZjddrxYYPiDgXoNtYyj3FPfjMrjESM1uEGow2H4os1Wt4JaXK46gU8dS1NIYrJRYlc7CLsl8YrjvWBxvNpXiKU9poUVfE7uRvwe5NN7QnVPxdraolN5k2C2EGSRN0po6N19PuO3tw4xOybb/nmc+njlbvNfY/eUOkjclYendacjrUWQDykGjbXxa7jcuJK8qSCTaULW5E6khzCXrL1yxCgVB+Iu5M0jdLhsSx7PQlbMmyMyUOfFFmuEfW5r5oWs9WWZMRZT7ORH44ocag==
+  template:
+    metadata:
+      name: joplyn-config
+      namespace: joplyn
+    type: Secret
