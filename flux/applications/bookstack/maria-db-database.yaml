@@ -1,0 +1,9 @@
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: Database
+metadata:
+  name: bookstack-db
+  namespace: bookstack
+spec:
+  name: bookstack
+  mariaDbRef:
+    name: bookstack-mariadb
