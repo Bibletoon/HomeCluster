@@ -25,7 +25,7 @@ spec:
                 APP_URL:
                     value: "https://bookstack.bibletoon.xyz"
                 APP_DEFAULT_DARK_MODE:
-                    value: true
+                    value: "true"
             envFrom:
                 - type: secret
                   name: bookstack-db-config
