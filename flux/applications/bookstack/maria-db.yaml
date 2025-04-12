@@ -10,9 +10,6 @@ spec:
   storage:
     size: 5Gi
     storageClassName: longhorn-sr
-  image:
-    repository: mariadb
-    tag: "11.3"
   replicas: 3
   service:
     type: ClusterIP
