@@ -40,6 +40,7 @@ spec:
                 mountPVC: true
                 mountPath: "/config"
                 storageClass: longhorn
+                name: "bookstack-data"
                 storageSize: 5Gi
         service:
             enabled: true
