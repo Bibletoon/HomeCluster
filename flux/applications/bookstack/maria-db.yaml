@@ -1,11 +1,12 @@
 apiVersion: k8s.mariadb.com/v1alpha1
 kind: MariaDB
 metadata:
-  name: mariadb
+  name: bookstack-mariadb
   namespace: bookstack
 spec:
-  rootPasswordSecretGeneration:
-    enabled: true
+  rootPasswordSecretKeyRef:
+    name: bookstack-mariadb
+    key: password
   storage:
     size: 5Gi
   image:
