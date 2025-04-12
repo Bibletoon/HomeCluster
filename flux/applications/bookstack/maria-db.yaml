@@ -1,0 +1,20 @@
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: MariaDB
+metadata:
+  name: mariadb
+  namespace: bookstack
+spec:
+  rootPasswordSecretGeneration:
+    enabled: true
+  storage:
+    size: 5Gi
+  image:
+    repository: mariadb
+    tag: "11.3"
+  replicas: 3
+  service:
+    type: ClusterIP
+  volumeClaimTemplate:
+    storageClassName: longhorn-sr
+  metrics:
+      enabled: true
