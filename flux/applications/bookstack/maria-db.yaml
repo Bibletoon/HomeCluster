@@ -5,7 +5,7 @@ metadata:
   namespace: bookstack
 spec:
   rootPasswordSecretKeyRef:
-    name: bookstack-mariadb
+    name: bookstack-mariadb-pass
     key: password
   storage:
     size: 5Gi
