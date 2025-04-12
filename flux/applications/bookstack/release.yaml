@@ -35,13 +35,13 @@ spec:
             containerSecurityContext:
                 runAsNonRoot: false
                 readOnlyRootFilesystem: false
-            persistence:
-                enabled: true
-                mountPVC: true
-                mountPath: "/config"
-                storageClass: longhorn
-                name: "bookstack-data"
-                storageSize: 5Gi
+        persistence:
+            enabled: true
+            mountPVC: true
+            mountPath: "/config"
+            storageClass: longhorn
+            name: "bookstack-data"
+            storageSize: 5Gi
         service:
             enabled: true
             ports:
