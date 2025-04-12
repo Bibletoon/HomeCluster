@@ -11,6 +11,8 @@ spec:
     size: 5Gi
     storageClassName: longhorn-sr
   replicas: 3
+  replication:
+    enabled: true
   service:
     type: ClusterIP
   metrics:
