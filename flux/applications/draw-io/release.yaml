@@ -1,0 +1,40 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: draw-io
+    namespace: draw-io
+spec:
+    interval: 10m
+    chart:
+        spec:
+            chart: application
+            version: '4.2.6'
+            sourceRef:
+                kind: HelmRepository
+                name: stakater
+                namespace: application
+            interval: 1h
+    values:
+        applicationName: "draw-io"
+        deployment:
+            enabled: true
+            image:
+                repository: docker.io/jgraph/drawio
+                tag: latest
+            containerSecurityContext:
+                runAsNonRoot: false
+                readOnlyRootFilesystem: false
+        service:
+            enabled: true
+            ports:
+                - name: http
+                  port: 8080
+                  protocol: TCP
+                  targetPort: 8080
+        ingress:
+            enabled: true
+            ingressClassName: traefik
+            hosts:
+                - host: draw.bibletoon.xyz
+                  paths:
+                      - path: /
