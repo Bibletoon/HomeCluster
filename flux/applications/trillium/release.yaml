@@ -28,12 +28,3 @@ spec:
             enabled: true
             type: persistentVolumeClaim
             existingClaim: trillium-data
-        ingress:
-          main:
-            enabled: true
-            className: traefik
-            hosts:
-              - host: trilium.bibletoon.xyz
-                paths:
-                  - path: /
-                    pathType: Prefix
