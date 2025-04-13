@@ -5,6 +5,7 @@ metadata:
     prometheus: kube-prometheus-stack-prometheus
     role: alert-rules
   name: blackbox-exporter
+  namespace: blackbox-exporter
 spec:
   groups:
     name: "blackbox-exporter.rules"
