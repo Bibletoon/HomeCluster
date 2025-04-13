@@ -31,7 +31,9 @@ spec:
         ingress:
           main:
             enabled: true
+            className: traefik
             hosts:
-              - host: trilium.local
+              - host: trilium.bibletoon.xyz
                 paths:
                   - path: /
+                    pathType: Prefix
