@@ -1,0 +1,8 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+    name: trillium
+    namespace: trillium
+spec:
+    interval: 1h
+    url: https://triliumnext.github.io/helm-charts
