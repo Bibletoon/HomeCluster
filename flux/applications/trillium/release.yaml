@@ -27,4 +27,4 @@ spec:
           data:
             enabled: true
             type: persistentVolumeClaim
-            existingClaim: trillium-data
+            existingClaim: trillium-pvc

@@ -1,7 +1,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: trillium-data
+  name: trillium-pvc
   namespace: trilium
 spec:
   accessModes:
