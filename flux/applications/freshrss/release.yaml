@@ -41,6 +41,8 @@ spec:
               value: preferred_username
             - name: OIDC_CLIENT_CRYPTO_KEY
               value: YvEq97IFP66ypS2vVQDL
+            - name: CRON_MIN
+              value: '*/30'
         persistence:
             config:
                 enabled: true
