@@ -25,7 +25,7 @@ spec:
             volumes:
                 config:
                     secret:
-                        secretName: config
+                        secretName: colette
             volumeMounts:
                 config:
                     mountPath: /config
