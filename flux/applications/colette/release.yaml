@@ -1,0 +1,46 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: colette
+    namespace: colette
+spec:
+    interval: 10m
+    chart:
+        spec:
+            chart: application
+            version: '4.2.6'
+            sourceRef:
+                kind: HelmRepository
+                name: stakater
+                namespace: application
+            interval: 1h
+    values:
+        applicationName: "colette"
+        deployment:
+            enabled: true
+            reloadOnChange: true
+            env:
+                CONFIG_PATH:
+                    value: /config
+            volumes:
+                config:
+                    secret:
+                        secretName: config
+            volumeMounts:
+                config:
+                    mountPath: /config
+            image:
+                repository: bibletoon/colette
+                tag: 0.0.2
+            containerSecurityContext:
+                readOnlyRootFilesystem: true
+                runAsNonRoot: false
+        service:
+            enabled: true
+        ingress:
+            enabled: true
+            ingressClassName: traefik
+            hosts:
+                - host: colette.biblehome.xyz
+                  paths:
+                      - path: /
