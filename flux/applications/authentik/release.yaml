@@ -8,7 +8,7 @@ spec:
     chart:
         spec:
             chart: authentik
-            version: '2024.6.x'
+            version: '2024.12.x'
             sourceRef:
                 kind: HelmRepository
                 name: authentik
