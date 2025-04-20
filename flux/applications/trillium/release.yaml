@@ -21,7 +21,7 @@ spec:
               trilium:
                 image:
                   repository: triliumnext/notes
-                  tag: v0.92.7
+                  tag: v0.93.0
                   pullPolicy: IfNotPresent
         persistence:
           data:
