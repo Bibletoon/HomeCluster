@@ -9,3 +9,6 @@ spec:
     - port: 30027
       targetPort: 30027
       protocol: TCP
+    - port: 30041
+      targetPort: 30041
+      protocol: TCP

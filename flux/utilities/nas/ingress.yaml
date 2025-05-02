@@ -16,3 +16,13 @@ spec:
                 name: nas
                 port:
                   number: 30027
+    - host: im.bibletoon.xyz
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nas
+                port:
+                  number: 30041
