@@ -73,6 +73,10 @@ spec:
                         href: https://rss.bibletoon.xyz
                         description: RSS Feed service
                         icon: freshrss.svg
+                    - Home Assistant:
+                        href: https://assistant.biblehome.xyz
+                        description: Home automation
+                        icon: home-assistant.svg
                 - System:
                     - Authentik:
                         href: https://auth.bibletoon.xyz
