@@ -31,6 +31,7 @@ spec:
                         href: https://grafana.bibletoon.xyz
                         description: Kubernetes observability
                         icon: grafana.svg
+            bookmarks:
             widgets:
                 - resources:
                     backend: kubernetes
@@ -51,3 +52,8 @@ spec:
                 headerStyle: boxed
                 layout:
                     Monitoring
+            kubernetes:
+                mode: 'cluster'
+        env:
+            - name: HOMEPAGE_ALLOWED_HOSTS
+              value: biblehome.xyz
