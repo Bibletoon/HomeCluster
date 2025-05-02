@@ -114,11 +114,10 @@ spec:
                     expanded: false
                     cpu: true
                     memory: true
-                - kubernetes:
-                    cluster:
-                        show: true
-                        cpu: true
-                        memory: true
+                - datetime:
+                    text_size: x1
+                    format:
+                        timeStyle: short
             settingsString: |
                 title: Homepage
                 headerStyle: boxed
