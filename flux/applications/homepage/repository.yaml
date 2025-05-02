@@ -5,4 +5,4 @@ metadata:
     namespace: homepage
 spec:
     interval: 1h
-    url: https://triliumnext.github.io/helm-charts
+    url: https://jameswynn.github.io/helm-charts
