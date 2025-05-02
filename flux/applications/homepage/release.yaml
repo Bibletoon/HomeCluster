@@ -67,7 +67,7 @@ spec:
                         icon: wakapi.svg
                     - Trilium:
                         href: https://trilium.bibletoon.xyz
-                        desctiption: Note taking app
+                        description: Note taking app
                         icon: trilium.svg
                     - FreshRSS:
                         href: https://rss.bibletoon.xyz
@@ -119,15 +119,15 @@ spec:
                         show: true
                         cpu: true
                         memory: true
-                - datetime:
-                    text_size: x1
-                    format:
-                        timeStyle: short
             settingsString: |
                 title: Homepage
                 headerStyle: boxed
                 layout:
                     Monitoring
+                    Media
+                    Applications
+                    System
+                    Proxmox
             kubernetes:
                 mode: 'cluster'
         env:
