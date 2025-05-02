@@ -16,13 +16,14 @@ spec:
             interval: 1h
     values:
         ingress:
-            enabled: true
-            ingressClassName: traefik
-            hosts:
-                - host: 'biblehome.xyz'
-                  paths:
-                    - path: /
-                      pathType: Prefix
+            main:
+                enabled: true
+                ingressClassName: traefik
+                hosts:
+                    - host: 'biblehome.xyz'
+                      paths:
+                        - path: /
+                          pathType: Prefix
         config:
             services:
                 - Monitoring:
