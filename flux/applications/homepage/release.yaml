@@ -58,7 +58,7 @@ spec:
                         description: Read it later service
                         icon: wallabag.svg
                     - Vaultwarden:
-                        href: https://vaultwarden.bibletoonx.xyz
+                        href: https://vaultwarden.bibletoon.xyz
                         description: Password manager
                         icon: vaultwarden.svg
                     - Wakapi:
@@ -74,7 +74,7 @@ spec:
                         description: RSS Feed service
                         icon: freshrss.svg
                     - Home Assistant:
-                        href: https://assistant.biblehome.xyz
+                        href: https://assistant.biblenas.xyz
                         description: Home automation
                         icon: home-assistant.svg
                 - System:
