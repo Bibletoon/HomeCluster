@@ -8,4 +8,6 @@ subsets:
       - ip: 192.168.2.60
     ports:
       - port: 30027
+        name: nc
       - port: 30041
+        name: im
