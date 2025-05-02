@@ -31,6 +31,82 @@ spec:
                         href: https://grafana.bibletoon.xyz
                         description: Kubernetes observability
                         icon: grafana.svg
+                    - Alertmanager:
+                        href: https://alerts.biblehome.xyz
+                        description: Kubernetes alerting
+                        icon: alertmanager.svg
+                    - Prometheus:
+                        href: https://prometheus.biblehome.xyz
+                        description: Kubernetes metrics
+                        icon: prometheus.svg
+                    - Uptime Kuma:
+                        href: https://kuma.biblenas.xyz
+                        description: NAS observability
+                        icon: uptime-kuma.svg
+                - Media:
+                    - Nextcloud:
+                        href: https://nc.bibletoon.xyz
+                        description: File storage
+                        icon: nextcloud.svg
+                    - Immich:
+                        href: https://im.bibletoon.xyz
+                        description: Image storage
+                        icon: immich.svg
+                - Applications:
+                    - Wallabag:
+                        href: https://wallabag.bibletoon.xyz
+                        description: Read it later service
+                        icon: wallabag.svg
+                    - Vaultwarden:
+                        href: https://vaultwarden.bibletoonx.xyz
+                        description: Password manager
+                        icon: vaultwarden.svg
+                    - Wakapi:
+                        href: https://wakapi.bibletoon.xyz
+                        description: Coding time tracker
+                        icon: wakapi.svg
+                    - Trilium:
+                        href: https://trilium.bibletoon.xyz
+                        desctiption: Note taking app
+                        icon: trilium.svg
+                    - FreshRSS:
+                        href: https://rss.bibletoon.xyz
+                        description: RSS Feed service
+                        icon: freshrss.svg
+                - System:
+                    - Authentik:
+                        href: https://auth.bibletoon.xyz
+                        description: Auth manager
+                        icon: authentik.svg
+                    - Longhorn:
+                        href: https://longhorn.biblehome.xyz
+                        description: Kubernetes storage operator
+                        icon: longhorn.svg
+                    - TrueNAS:
+                        href: https://admin.biblenas.xyz
+                        description: NAS Management admin
+                        icon: truenas.svg
+                    - Nginx:
+                        href: https://nginx.biblenas.xyz
+                        description: NAS Proxy manager
+                        icon: nginx-proxy-manager.svg
+                - Proxmox:
+                    - Bair:
+                        href: https://bair.biblenas.xyz
+                        description: Backup server
+                        icon: proxmox.svg
+                    - Anton:
+                        href: https://anton.biblenas.xyz
+                        description: Anton node
+                        icon: proxmox.svg
+                    - Boris:
+                        href: https://boris.biblenas.xyz
+                        description: Boris node
+                        icon: proxmox.svg
+                    - Costya:
+                        href: https://costya.biblenas.xyz
+                        description: Costya node
+                        icon: proxmox.svg
             bookmarks:
             widgets:
                 - resources:
@@ -43,10 +119,10 @@ spec:
                         show: true
                         cpu: true
                         memory: true
-                    nodes:
-                        show: true
-                        cpu: true
-                        memory: true
+                - datetime:
+                    text_size: x1
+                    format:
+                        timeStyle: short
             settingsString: |
                 title: Homepage
                 headerStyle: boxed
