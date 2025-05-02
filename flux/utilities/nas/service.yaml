@@ -9,6 +9,8 @@ spec:
     - port: 30027
       targetPort: 30027
       protocol: TCP
+      name: nc
     - port: 30041
       targetPort: 30041
       protocol: TCP
+      name: im
