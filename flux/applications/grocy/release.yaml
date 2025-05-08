@@ -27,6 +27,13 @@ spec:
             containerSecurityContext:
                 runAsNonRoot: false
                 readOnlyRootFilesystem: false
+        persistence:
+            enabled: true
+            mountPVC: true
+            mountPath: "/var/www/data"
+            storageClass: longhorn
+            name: "grocy-data"
+            storageSize: 5Gi
         service:
             enabled: true
             ports:
