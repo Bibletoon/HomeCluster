@@ -124,7 +124,7 @@ spec:
                                 {{ define "__alerts_list" -}}
                                 {{ range . }}
                                 {{if ne (index .Labels "alertname") "" -}}
-                                {{ if eq .Status "firing" }}🔴{{ else }}🟢{{ end }}
+                                {{ if eq .Status "firing" }} 🔴 {{ else }} 🟢 {{ end }}
                                     {{- if ne (index .Labels "severity") "" -}}
                                         <u><b>[{{ index .Labels "severity" }}]</b></u> {{ end -}}
                                 <b>{{ index .Labels "alertname" }}</b> 🕙 {{ .StartsAt.Format "15:04:05    🗓️ 2006-01-02" }}{{ end -}}
