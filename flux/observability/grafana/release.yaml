@@ -1,0 +1,31 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: grafana
+    namespace: grafana
+spec:
+    interval: 10m
+    chart:
+        spec:
+            chart: grafana
+            version: '9.2.3'
+            sourceRef:
+                kind: HelmRepository
+                name: grafana
+                namespace: grafana
+            interval: 10m
+    values:
+        ingress:
+            enabled: true
+            ingressClassName: traefik
+            hosts:
+                - grafana.bibletoon.xyz
+        persistence:
+            enabled: true
+            storageClassName: "longhorn"
+            accessModes:
+                - ReadWriteOnce
+            size: 5Gi
+        grafana.ini:
+            server:
+                root_url: 'https://grafana.bibletoon.xyz/'
