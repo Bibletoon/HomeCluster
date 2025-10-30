@@ -1,0 +1,13 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+    name: issueneter-postgres
+    namespace: issueneter
+spec:
+    instances: 3
+
+    storage:
+        storageClass: longhorn-sr
+        size: 5Gi
+    monitoring:
+        enablePodMonitor: true
