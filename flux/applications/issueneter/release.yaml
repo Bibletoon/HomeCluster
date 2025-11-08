@@ -31,7 +31,7 @@ spec:
                     mountPath: /config
             image:
                 repository: bibletoon/issueneter
-                tag: 0.0.6
+                tag: 0.0.7
             containerSecurityContext:
                 readOnlyRootFilesystem: true
                 runAsNonRoot: false
