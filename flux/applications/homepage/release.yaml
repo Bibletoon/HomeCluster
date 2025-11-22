@@ -73,15 +73,19 @@ spec:
                         href: https://rss.bibletoon.xyz
                         description: RSS Feed service
                         icon: freshrss.svg
+                    - RssBridge:
+                        href: https://rss-bridge.biblehome.xyz
+                        description: Transform any source to RSS
+                        icon: rss-bridge.svg
                     - Home Assistant:
                         href: https://assistant.biblenas.xyz
                         description: Home automation
                         icon: home-assistant.svg
                 - System:
-                    - Authentik:
-                        href: https://auth.bibletoon.xyz
+                    - PocketID:
+                        href: https://id.bibletoon.xyz
                         description: Auth manager
-                        icon: authentik.svg
+                        icon: pocket-id.svg
                     - Longhorn:
                         href: https://longhorn.biblehome.xyz
                         description: Kubernetes storage operator
