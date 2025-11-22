@@ -32,15 +32,13 @@ spec:
             - name: OIDC_ENABLED
               value: 1
             - name: OIDC_PROVIDER_METADATA_URL
-              value: https://auth.bibletoon.xyz/application/o/freshrss/.well-known/openid-configuration
+              value: https://id.bibletoon.xyz/.well-known/openid-configuration
             - name: OIDC_X_FORWARDED_HEADERS
               value: X-Forwarded-Port X-Forwarded-Proto X-Forwarded-Host
             - name: OIDC_SCOPES
               value: openid email profile
             - name: OIDC_REMOTE_USER_CLAIM
               value: preferred_username
-            - name: OIDC_CLIENT_CRYPTO_KEY
-              value: YvEq97IFP66ypS2vVQDL
             - name: CRON_MIN
               value: '*/30'
         persistence:
