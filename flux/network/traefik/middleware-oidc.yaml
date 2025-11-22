@@ -10,3 +10,4 @@ spec:
       Provider:
         ClientId: "urn:k8s:secret:oidc-secret:providerClientId"
         ClientSecret: "urn:k8s:secret:oidc-secret:providerClientSecret"
+        Url: "https://id.bibletoon.xyz"
