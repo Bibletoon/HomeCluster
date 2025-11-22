@@ -1,0 +1,12 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+    name: pocket-id-postgres
+    namespace: pocket-id
+spec:
+    instances: 3
+    storage:
+        storageClass: longhorn-sr
+        size: 5Gi
+    monitoring:
+        enablePodMonitor: true
