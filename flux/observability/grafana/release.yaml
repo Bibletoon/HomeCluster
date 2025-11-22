@@ -39,7 +39,7 @@ spec:
                     enabled: true
                     client_id: '${CLIENT_ID}'
                     client_secret: '${CLIENT_SECRET}'
-                    scopes: "openid profile email"
+                    scopes: "openid profile email groups"
                     auth_url: "https://id.bibletoon.xyz/authorize"
                     token_url: "https://id.bibletoon.xyz/api/oidc/token"
                     api_url: "https://id.bibletoon.xyz/api/oidc/userinfo"
