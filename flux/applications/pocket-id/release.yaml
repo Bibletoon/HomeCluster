@@ -24,6 +24,7 @@ spec:
             host: id.bibletoon.xyz
             paths:
                 - path: /
+                  pathType: prefix
         persistence:
             enabled: true
             storageClass: longhorn
