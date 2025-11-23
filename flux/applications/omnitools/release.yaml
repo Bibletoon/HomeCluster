@@ -22,7 +22,7 @@ spec:
                 repository: iib0011/omni-tools
                 tag: 0.6.0
             containerSecurityContext:
-                    readOnlyRootFilesystem: true
+                    readOnlyRootFilesystem: false
                     runAsNonRoot: false
         service:
             enabled: true
