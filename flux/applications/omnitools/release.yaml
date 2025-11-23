@@ -21,6 +21,9 @@ spec:
             image:
                 repository: iib0011/omni-tools
                 tag: 0.6.0
+            containerSecurityContext:
+                    readOnlyRootFilesystem: true
+                    runAsNonRoot: false
         service:
             enabled: true
         ingress:
