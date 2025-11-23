@@ -26,6 +26,11 @@ spec:
                     runAsNonRoot: false
         service:
             enabled: true
+            ports:
+                - port: 8080
+                  name: http
+                  protocol: TCP
+                  targetPort: 80
         ingress:
             enabled: true
             ingressClassName: traefik
