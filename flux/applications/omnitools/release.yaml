@@ -20,7 +20,7 @@ spec:
             enabled: true
             image:
                 repository: iib0011/omni-tools
-                tag: v0.6.0
+                tag: 0.6.0
         service:
             enabled: true
         ingress:
