@@ -4,6 +4,8 @@
     "config:recommended"
   ],
   "flux": {
-    "fileMatch": ["flux/.+\\.yaml$"]
+    "managerFilePatterns": [
+      "/flux/.+\\.yaml$/"
+    ]
   }
 }
