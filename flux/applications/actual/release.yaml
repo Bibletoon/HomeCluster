@@ -19,7 +19,6 @@ spec:
             method: "openid"
             openid:
                 discoveryUrl: "https://id.bibletoon.xyz/.well-known/openid-configuration"
-                server_hostname: "actual.bibletoon.xyz"
                 authMethod: "openid"
                 existingSecret:
                     name: "actual-openid"
