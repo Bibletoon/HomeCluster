@@ -5,9 +5,19 @@ metadata:
     namespace: vaultwarden
 spec:
     instances: 3
-
     storage:
         storageClass: longhorn-sr
         size: 10Gi
     monitoring:
         enablePodMonitor: true
+    backup:
+      barmanObjectStorage:
+        destinationPath: 's3://pg-backup/vaultwarden'
+        endpointURL: 's3.biblenas.xyz'
+        s3Credentials:
+          accessKeyId:
+            name: s3-creds
+            key: keyId
+          secretAccessKey:
+            name: s3-creds
+            key: secretKey
