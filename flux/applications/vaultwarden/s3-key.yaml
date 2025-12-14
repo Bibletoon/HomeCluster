@@ -5,4 +5,3 @@ metadata:
  namespace: vaultwarden
  annotations:
    reflector.v1.k8s.emberstack.com/reflects: "cnpg/s3-creds"
-data: []
