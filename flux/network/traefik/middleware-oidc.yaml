@@ -12,5 +12,5 @@ spec:
         ClientSecret: "urn:k8s:secret:oidc-secret:providerClientSecret"
         Url: "https://id.bibletoon.xyz"
       Headers:
-        - Name: "REMOTE_USER"
-          Value: "{{`{{ .claims.email }}`}}"
+        - Name: "OIDC_EMAIL"
+          Value: "{{ .claims.email }}"
