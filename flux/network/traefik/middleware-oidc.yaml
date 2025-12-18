@@ -13,4 +13,4 @@ spec:
         Url: "https://id.bibletoon.xyz"
       Headers:
         - Name: "REMOTE_USER"
-          Value: "{{ .claims.email }}"
+          Value: "{{`{{ .claims.email }}`}}"
