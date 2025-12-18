@@ -1,0 +1,39 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: firefly
+    namespace: firefly
+spec:
+    interval: 1h
+    chart:
+        spec:
+            chart: firefly-iii
+            version: '1.9.2'
+            sourceRef:
+                kind: HelmRepository
+                name: firefly
+                namespace: firefly
+            interval: 1h
+    values:
+      persistence:
+        enabled: true
+        storageClass: longhorn
+        storage: 1Gi
+      config:
+        env:
+          DB_HOST:
+          DB_DATABASE:
+          DB_USERNAME:
+          TZ: "Europe/Moscow"
+      secrets:
+        env:
+          APP_PASSWORD:
+          DB_PASSWORD:
+      ingress:
+        enabled: true
+        className: traefik
+    valuesFrom:
+        - kind: Secret
+          targetPath: database.connectionString
+          name: pocket-id-postgres-app
+          valuesKey: uri
