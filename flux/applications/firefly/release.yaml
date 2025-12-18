@@ -21,6 +21,7 @@ spec:
         storage: 1Gi
       config:
         env:
+          DB_CONNECTION: pgsql
           TZ: "Europe/Moscow"
       secrets:
         env:
