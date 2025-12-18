@@ -21,19 +21,33 @@ spec:
         storage: 1Gi
       config:
         env:
-          DB_HOST:
-          DB_DATABASE:
-          DB_USERNAME:
           TZ: "Europe/Moscow"
       secrets:
         env:
-          APP_PASSWORD:
-          DB_PASSWORD:
+          APP_PASSWORD: ''
       ingress:
         enabled: true
+        annotations:
+          traefik.ingress.kubernetes.io/router.middlewares: traefik-oidc@kubernetescrd
         className: traefik
     valuesFrom:
         - kind: Secret
-          targetPath: database.connectionString
-          name: pocket-id-postgres-app
-          valuesKey: uri
+          targetPath: secrets.env.DB_PASSWORD
+          name: firefly-postgres-app
+          valuesKey: password
+        - kind: Secret
+          targetPath: secrets.config.DB_HOST
+          name: firefly-postgres-app
+          valuesKey: host
+        - kind: Secret
+          targetPath: secrets.config.DB_DATABASE
+          name: firefly-postgres-app
+          valuesKey: dbname
+        - kind: Secret
+          targetPath: secrets.config.DB_USERNAME
+          name: firefly-postgres-app
+          valuesKey: user
+        - kind: Secret
+          targetPath: secrets.config.DB_PORT
+          name: firefly-postgres-app
+          valuesKey: port
