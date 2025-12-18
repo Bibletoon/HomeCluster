@@ -22,6 +22,7 @@ spec:
       config:
         env:
           AUTHENTICATION_GUARD: remote_user_guard
+          AUTHENTICATION_GUARD_HEADER: HTTP_REMOTE_USER
           DB_CONNECTION: pgsql
           TZ: "Europe/Moscow"
       secrets:
