@@ -31,6 +31,8 @@ spec:
         annotations:
           traefik.ingress.kubernetes.io/router.middlewares: traefik-oidc@kubernetescrd
         className: traefik
+        hosts:
+          - firefly.bibletoon.xyz
     valuesFrom:
         - kind: Secret
           targetPath: secrets.env.DB_PASSWORD
