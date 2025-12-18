@@ -39,18 +39,18 @@ spec:
           name: firefly-postgres-app
           valuesKey: password
         - kind: Secret
-          targetPath: secrets.config.DB_HOST
+          targetPath: config.env.DB_HOST
           name: firefly-postgres-app
           valuesKey: host
         - kind: Secret
-          targetPath: secrets.config.DB_DATABASE
+          targetPath: config.env.DB_DATABASE
           name: firefly-postgres-app
           valuesKey: dbname
         - kind: Secret
-          targetPath: secrets.config.DB_USERNAME
+          targetPath: config.env.DB_USERNAME
           name: firefly-postgres-app
           valuesKey: user
         - kind: Secret
-          targetPath: secrets.config.DB_PORT
+          targetPath: config.env.DB_PORT
           name: firefly-postgres-app
           valuesKey: port
