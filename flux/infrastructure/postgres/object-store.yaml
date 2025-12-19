@@ -2,6 +2,7 @@ apiVersion: barmancloud.cnpg.io/v1
 kind: ObjectStore
 metadata:
   name: s3-store
+  namespace: cnpg
 spec:
   configuration:
     destinationPath: s3://pg-backup/
@@ -15,3 +16,4 @@ spec:
         key: secretKey
     wal:
       compression: gzip
+  retentionPolicy: "7d"
