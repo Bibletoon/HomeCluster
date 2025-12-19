@@ -7,10 +7,10 @@ spec:
     interval: 10m
     chart:
         spec:
-            chart: cloudnative-pg
+            chart: plugin-barman-cloud
             version: '0.3.1'
             sourceRef:
                 kind: HelmRepository
-                name: plugin-barman-cloud
+                name: cnpg
                 namespace: cnpg
             interval: 1h
