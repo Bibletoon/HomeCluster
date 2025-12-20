@@ -1,0 +1,19 @@
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: s3-store
+  namespace: cnpg
+spec:
+  configuration:
+    destinationPath: s3://pg-backup/
+    endpointURL: http://s3.biblenas.xyz
+    s3Credentials:
+      accessKeyId:
+        name: s3-creds
+        key: keyId
+      secretAccessKey:
+        name: s3-creds
+        key: secretKey
+    wal:
+      compression: gzip
+  retentionPolicy: "7d"
