@@ -2,11 +2,11 @@ apiVersion: barmancloud.cnpg.io/v1
 kind: ObjectStore
 metadata:
   name: s3-store
-  namespace: cnpg
+  namespace: vaultwarden
 spec:
   configuration:
     destinationPath: s3://pg-backup/
-    endpointURL: http://s3.biblenas.xyz
+    endpointURL: https://s3.biblenas.xyz
     s3Credentials:
       accessKeyId:
         name: s3-creds
