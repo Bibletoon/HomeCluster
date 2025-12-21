@@ -13,7 +13,7 @@ parameters:
   staleReplicaTimeout: '30'
   unmapMarkSnapChainRemoved: ignored
   backupTargetName: s3-backup-target
-  recurringJobSelector: [{"name":"backup","isGroup":"true"}]
+  recurringJobSelector: '[{"name":"backup","isGroup":"true"}]'
 reclaimPolicy: Delete
 allowVolumeExpansion: true
 volumeBindingMode: Immediate
