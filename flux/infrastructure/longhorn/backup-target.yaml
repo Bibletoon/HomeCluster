@@ -1,0 +1,8 @@
+apiVersion: longhorn.io/v1beta2
+kind: BackupTarget
+metadata:
+  name: s3-backup-target
+  namespace: longhorn
+spec:
+  backupTargetUrl: 's3://longhorn-backup@garage/data'
+  credentialSecret: s3-creds
