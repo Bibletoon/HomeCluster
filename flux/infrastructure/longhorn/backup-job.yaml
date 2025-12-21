@@ -11,4 +11,4 @@ spec:
   groups:
     - backup
   parameters:
-    full-backup-interval: 7
+    full-backup-interval: "7"
