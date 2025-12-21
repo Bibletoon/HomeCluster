@@ -4,5 +4,5 @@ metadata:
   name: s3-backup-target
   namespace: longhorn
 spec:
-  backupTargetUrl: 's3://longhorn-backup@garage/data'
+  backupTargetURL: 's3://longhorn-backup@garage/data'
   credentialSecret: s3-creds
