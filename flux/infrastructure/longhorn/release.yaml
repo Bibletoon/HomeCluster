@@ -20,3 +20,8 @@ spec:
             host: "longhorn.biblehome.xyz"
             annotations:
                 traefik.ingress.kubernetes.io/router.middlewares: default-allow-local-only@kubernetescrd
+        persistence:
+          backupTargetName: s3-backup-target
+          recurringJobSelector:
+            enabled: true
+            jobList: [{"name":"backup","isGroup":"true"}]
