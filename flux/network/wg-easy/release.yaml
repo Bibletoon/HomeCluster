@@ -21,6 +21,7 @@ spec:
             metallb.universe.tf/loadBalancerIPs: 192.168.2.103
         environmentVariables:
           WG_HOST: bibletoon.xyz
+          WG_CONFIG_PORT: 8228
         ingress:
           enabled: true
           annotations:
