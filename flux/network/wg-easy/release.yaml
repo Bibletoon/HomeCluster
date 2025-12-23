@@ -31,5 +31,5 @@ spec:
     valuesFrom:
       - kind: Secret
         targetPath: environmentVariables.PASSWORD_HASH
-        name: wh-password
+        name: wg-password
         valuesKey: passwordHash
