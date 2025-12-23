@@ -1,7 +1,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-    name: wh-easy
+    name: wg-easy
     namespace: wg-easy
 spec:
     interval: 1m
