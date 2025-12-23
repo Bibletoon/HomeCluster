@@ -15,10 +15,16 @@ spec:
                 namespace: wg-easy
             interval: 10m
     values:
+        service:
+          type: LoadBalancer
+          annotations:
+            metallb.universe.tf/loadBalancerIPs: 192.168.2.103
         environmentVariables:
           WG_HOST: bibletoon.xyz
         ingress:
           enabled: true
+          annotations:
+            traefik.ingress.kubernetes.io/router.middlewares: default-allow-local-only@kubernetescrd
           hosts:
             - host: wg.biblehome.xyz
               paths:
