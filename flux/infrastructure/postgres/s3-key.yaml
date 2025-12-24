@@ -12,8 +12,8 @@ spec:
     metadata:
       annotations:
         reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
-        reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: vaultwarden
+        reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: vaultwarden,colette,firefly,freshrss,issueneter,joplin,pocket-id,wakapi,wallabag
         reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
-        reflector.v1.k8s.emberstack.com/reflection-auto-namespaces: vaultwarden
+        reflector.v1.k8s.emberstack.com/reflection-auto-namespaces: vaultwarden,colette,firefly,freshrss,issueneter,joplin,pocket-id,wakapi,wallabag
       name: s3-creds
       namespace: cnpg
