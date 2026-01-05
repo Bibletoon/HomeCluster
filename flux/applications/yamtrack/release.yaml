@@ -43,15 +43,13 @@ spec:
         service:
             enabled: true
             ports:
-                - port: 8001
+                - port: 8000
                   name: http
                   protocol: TCP
-                  targetPort: 8001
+                  targetPort: 8000
         ingress:
             enabled: true
             ingressClassName: traefik
-            annotations:
-              traefik.ingress.kubernetes.io/router.middlewares: traefik-oidc@kubernetescrd
             hosts:
                 - host: yamtrack.bibletoon.xyz
                   paths:
