@@ -36,10 +36,10 @@ spec:
         service:
             enabled: true
             ports:
-                - port: 8000
+                - port: 8001
                   name: http
                   protocol: TCP
-                  targetPort: 8000
+                  targetPort: 8001
         ingress:
             enabled: true
             ingressClassName: traefik
