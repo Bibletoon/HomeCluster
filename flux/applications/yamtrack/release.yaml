@@ -21,7 +21,7 @@ spec:
             reloadOnChange: true
             env:
                 TZ: Europe/Moscow
-                URLS: https://yamtrack.bibletoon.xyz
+                URLS: 'https://yamtrack.bibletoon.xyz'
             envFrom:
               - type: secret
                 name: secrets
