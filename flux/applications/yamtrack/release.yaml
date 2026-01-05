@@ -31,6 +31,8 @@ spec:
                   value: Europe/Moscow
                 URLS:
                   value: 'https://yamtrack.bibletoon.xyz'
+                SOCIALACCOUNT_ONLY:
+                  value: true
             envFrom:
               - type: secret
                 name: secrets
