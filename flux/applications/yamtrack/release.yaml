@@ -32,9 +32,9 @@ spec:
                 URLS:
                   value: 'https://yamtrack.bibletoon.xyz'
                 SOCIALACCOUNT_ONLY:
-                  value: true
+                  value: 'True'
                 REDIRECT_LOGIN_TO_SSO:
-                  value: true
+                  value: 'True'
             envFrom:
               - type: secret
                 name: secrets
