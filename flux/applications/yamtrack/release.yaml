@@ -19,6 +19,13 @@ spec:
         deployment:
             enabled: true
             reloadOnChange: true
+            resources:
+                limits:
+                  memory: 2048Mi
+                  cpu: 2
+                requests:
+                  memory: 128Mi
+                  cpu: 0.1
             env:
                 TZ:
                   value: Europe/Moscow
