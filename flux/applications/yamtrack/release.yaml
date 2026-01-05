@@ -20,9 +20,9 @@ spec:
             enabled: true
             reloadOnChange: true
             env:
-                - name: TZ
+                TZ:
                   value: Europe/Moscow
-                - name: URLS
+                URLS:
                   value: 'https://yamtrack.bibletoon.xyz'
             envFrom:
               - type: secret
