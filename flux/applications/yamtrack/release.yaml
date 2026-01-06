@@ -35,6 +35,8 @@ spec:
                   value: 'True'
                 REDIRECT_LOGIN_TO_SSO:
                   value: 'True'
+                WEB_CONCURRENCY:
+                  value: 5
             envFrom:
               - type: secret
                 name: secrets
