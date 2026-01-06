@@ -1,0 +1,67 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: yamtrack
+    namespace: yamtrack
+spec:
+    interval: 10m
+    chart:
+        spec:
+            chart: application
+            version: '6.14.0'
+            sourceRef:
+                kind: HelmRepository
+                name: stakater
+                namespace: application
+            interval: 1h
+    values:
+        applicationName: "yamtrack"
+        deployment:
+            enabled: true
+            reloadOnChange: true
+            dnsPolicy: 'None'
+            dnsConfig:
+              nameservers:
+                - 94.140.14.140
+                - 94.140.14.141
+            resources:
+                limits:
+                  memory: 2048Mi
+                  cpu: 2
+                requests:
+                  memory: 128Mi
+                  cpu: 0.1
+            env:
+                TZ:
+                  value: Europe/Moscow
+                URLS:
+                  value: 'https://yamtrack.bibletoon.xyz'
+                SOCIALACCOUNT_ONLY:
+                  value: 'True'
+                REDIRECT_LOGIN_TO_SSO:
+                  value: 'True'
+                WEB_CONCURRENCY:
+                  value: '5'
+            envFrom:
+              - type: secret
+                name: secrets
+            image:
+                repository: ghcr.io/fuzzygrim/yamtrack
+                tag: 0.24.11
+            containerSecurityContext:
+                readOnlyRootFilesystem: false
+                runAsNonRoot: false
+        service:
+            enabled: true
+            ports:
+                - port: 8000
+                  name: http
+                  protocol: TCP
+                  targetPort: 8000
+        ingress:
+            enabled: true
+            ingressClassName: traefik
+            hosts:
+                - host: yamtrack.bibletoon.xyz
+                  paths:
+                      - path: /
