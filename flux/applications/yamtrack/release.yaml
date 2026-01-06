@@ -8,7 +8,7 @@ spec:
     chart:
         spec:
             chart: application
-            version: '4.2.6'
+            version: '6.14.0'
             sourceRef:
                 kind: HelmRepository
                 name: stakater
@@ -19,6 +19,11 @@ spec:
         deployment:
             enabled: true
             reloadOnChange: true
+            dnsPolicy: 'None'
+            dnsConfig:
+              nameservers:
+                - 94.140.14.140
+                - 94.140.14.141
             resources:
                 limits:
                   memory: 2048Mi
