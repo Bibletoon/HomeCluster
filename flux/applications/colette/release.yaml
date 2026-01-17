@@ -39,7 +39,7 @@ spec:
             enabled: true
         ingress:
             enabled: true
-            ingressClassName: traefik-home
+            ingressClassName: traefik
             hosts:
                 - host: colette.biblehome.xyz
                   paths:

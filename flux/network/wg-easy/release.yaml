@@ -24,7 +24,8 @@ spec:
           WG_CONFIG_PORT: 8228
         ingress:
           enabled: true
-          className: traefik-home
+          annotations:
+            traefik.ingress.kubernetes.io/router.middlewares: default-allow-local-only@kubernetescrd
           hosts:
             - host: wg.biblehome.xyz
               paths:
