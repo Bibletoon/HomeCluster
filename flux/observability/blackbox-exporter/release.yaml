@@ -18,7 +18,7 @@ spec:
         namespaceOverride: blackbox-exporter
         ingress:
             enabled: true
-            className: traefik
+            className: traefik-home
             hosts:
                 - host: be.biblehome.xyz
                   paths:
@@ -33,5 +33,9 @@ spec:
                   interval: 30s
                   scrapeTimeout: 30s
                   module: http_2xx
-
-
+                - name: quberry
+                  url: https://www.quberry.ai/
+                  hostname: https://www.quberry.ai/
+                  interval: 30s
+                  scrapeTimeout: 30s
+                  module: http_2xx

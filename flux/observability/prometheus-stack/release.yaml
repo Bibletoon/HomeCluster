@@ -19,9 +19,7 @@ spec:
         prometheus:
             ingress:
                 enabled: true
-                ingressClassName: traefik
-                annotations:
-                    traefik.ingress.kubernetes.io/router.middlewares: default-allow-local-only@kubernetescrd
+                ingressClassName: traefik-home
                 hosts:
                     - prometheus.biblehome.xyz
             service:
@@ -178,9 +176,7 @@ spec:
                                     storage: 5Gi
             ingress:
                 enabled: true
-                ingressClassName: traefik
-                annotations:
-                    traefik.ingress.kubernetes.io/router.middlewares: default-allow-local-only@kubernetescrd
+                ingressClassName: traefik-home
                 hosts:
                     - alerts.biblehome.xyz
     valuesFrom:
@@ -188,4 +184,3 @@ spec:
           targetPath: telegram_token
           name: telegram
           valuesKey: token
-
