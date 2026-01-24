@@ -3,8 +3,6 @@ kind: Ingress
 metadata:
   name: trilium-ingress
   namespace: trilium
-  annotations:
-    traefik.ingress.kubernetes.io/router.middlewares: traefik-oidc@kubernetescrd
 spec:
   ingressClassName: traefik
   rules:

@@ -7,7 +7,7 @@ spec:
     interval: 10m
     chart:
         spec:
-            chart: trilium 
+            chart: trilium
             version: '1.3.0'
             sourceRef:
                 kind: HelmRepository
@@ -23,8 +23,21 @@ spec:
                   repository: triliumnext/notes
                   tag: v0.95.0
                   pullPolicy: IfNotPresent
+                env:
+                  TRILIUM_MULTIFACTORAUTHENTICATION_OAUTHISSUERBASEURL: 'https://id.bibletoon.xyz'
+                  TRILIUM_MULTIFACTORAUTHENTICATION_OAUTHISSUERNAME: 'PocketId'
+                  TRILIUM_MULTIFACTORAUTHENTICATION_OAUTHBASEURL: 'https://id.bibletoon.xyz/.well-known/openid-configuration'
         persistence:
           data:
             enabled: true
             type: persistentVolumeClaim
             existingClaim: trillium-pvc
+    valuesFrom:
+        - kind: Secret
+          targetPath: controllers.main.containers.trilium.env.TRILIUM_MULTIFACTORAUTHENTICATION_OAUTHCLIENTID
+          name: trillium-oidc
+          valuesKey: clientId
+        - kind: Secret
+          targetPath: controllers.main.containers.trilium.env.TRILIUM_MULTIFACTORAUTHENTICATION_OAUTHCLIENTSECRET
+          name: trillium-oidc
+          valuesKey: clientSecret
