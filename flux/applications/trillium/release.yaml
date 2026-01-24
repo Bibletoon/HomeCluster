@@ -26,7 +26,7 @@ spec:
                 env:
                   TRILIUM_MULTIFACTORAUTHENTICATION_OAUTHISSUERBASEURL: 'https://id.bibletoon.xyz'
                   TRILIUM_MULTIFACTORAUTHENTICATION_OAUTHISSUERNAME: 'PocketId'
-                  TRILIUM_MULTIFACTORAUTHENTICATION_OAUTHBASEURL: 'https://id.bibletoon.xyz/.well-known/openid-configuration'
+                  TRILIUM_MULTIFACTORAUTHENTICATION_OAUTHBASEURL: 'https://trillium.bibletoon.xyz'
         persistence:
           data:
             enabled: true
