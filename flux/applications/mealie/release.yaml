@@ -47,27 +47,27 @@ spec:
                 POSTGRES_DB:
                   valueFrom:
                     secretKeyRef:
-                      name: mealie-postgress-app
+                      name: mealie-postgres-app
                       key: dbname
                 POSTGRES_SERVER:
                   valueFrom:
                     secretKeyRef:
-                      name: mealie-postgress-app
+                      name: mealie-postgres-app
                       key: host
                 POSTGRES_USER:
                   valueFrom:
                     secretKeyRef:
-                      name: mealie-postgress-app
+                      name: mealie-postgres-app
                       key: user
                 POSTGRES_PASSWORD:
                   valueFrom:
                     secretKeyRef:
-                      name: mealie-postgress-app
+                      name: mealie-postgres-app
                       key: password
                 POSTGRES_PORT:
                   valueFrom:
                     secretKeyRef:
-                      name: mealie-postgress-app
+                      name: mealie-postgres-app
                       key: port
                 OIDC_CLIENT_ID:
                   valueFrom:
