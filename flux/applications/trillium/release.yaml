@@ -35,9 +35,9 @@ spec:
     valuesFrom:
         - kind: Secret
           targetPath: controllers.main.containers.trilium.env.TRILIUM_MULTIFACTORAUTHENTICATION_OAUTHCLIENTID
-          name: trillium-oidc
+          name: trilium-oidc
           valuesKey: clientId
         - kind: Secret
           targetPath: controllers.main.containers.trilium.env.TRILIUM_MULTIFACTORAUTHENTICATION_OAUTHCLIENTSECRET
-          name: trillium-oidc
+          name: trilium-oidc
           valuesKey: clientSecret
