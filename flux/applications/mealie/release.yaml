@@ -20,18 +20,65 @@ spec:
             enabled: true
             reloadOnChange: true
             env:
-                ALLOW_SIGNUP: 'false'
-                ALLOW_PASSWORD_LOGIN: 'false'
-                OIDC_AUTH_ENABLED: 'true'
-                OIDC_CONFIGURATION_URL: 'https://id.bibletoon.xyz/.well-known/openid-configuration'
-                OIDC_AUTO_REDIRECT: 'true'
-                OIDC_ADMIN_GROUP: 'mealie_admins'
-                OIDC_REMEMBER_ME: 'true'
-                OIDC_USER_CLAIM: 'preferred_username'
-                OIDC_NAME_CLAIM: 'display_name'
-                TZ: Europe/Moscow
-                DB_ENGINE: postgres
-                BASE_URL: 'https://mealie.bibletoon.xyz'
+                ALLOW_SIGNUP:
+                 value: 'false'
+                ALLOW_PASSWORD_LOGIN:
+                 value: 'false'
+                OIDC_AUTH_ENABLED:
+                 value: 'true'
+                OIDC_CONFIGURATION_URL:
+                 value: 'https://id.bibletoon.xyz/.well-known/openid-configuration'
+                OIDC_AUTO_REDIRECT:
+                 value: 'true'
+                OIDC_ADMIN_GROUP:
+                 value: 'mealie_admins'
+                OIDC_REMEMBER_ME:
+                 value: 'true'
+                OIDC_USER_CLAIM:
+                 value: 'preferred_username'
+                OIDC_NAME_CLAIM:
+                 value: 'display_name'
+                TZ:
+                 value: Europe/Moscow
+                DB_ENGINE:
+                 value: postgres
+                BASE_URL:
+                 value: 'https://mealie.bibletoon.xyz'
+                POSTGRES_DB:
+                  valueFrom:
+                    secretKeyRef:
+                      name: mealie-postgress-app
+                      key: dbname
+                POSTGRES_SERVER:
+                  valueFrom:
+                    secretKeyRef:
+                      name: mealie-postgress-app
+                      key: host
+                POSTGRES_USER:
+                  valueFrom:
+                    secretKeyRef:
+                      name: mealie-postgress-app
+                      key: user
+                POSTGRES_PASSWORD:
+                  valueFrom:
+                    secretKeyRef:
+                      name: mealie-postgress-app
+                      key: password
+                POSTGRES_PORT:
+                  valueFrom:
+                    secretKeyRef:
+                      name: mealie-postgress-app
+                      key: port
+                OIDC_CLIENT_ID:
+                  valueFrom:
+                    secretKeyRef:
+                      name: oidc-secret
+                      key: clientId
+                OIDC_CLIENT_SECRET:
+                  valueFrom:
+                    secretKeyRef:
+                      name: oidc-secret
+                      key: clientSecret
             image:
                 repository: ghcr.io/mealie-recipes/mealie
                 tag: v3.9.2
@@ -52,32 +99,3 @@ spec:
                 - host: mealie.bibletoon.xyz
                   paths:
                       - path: /
-    valuesFrom:
-        - kind: Secret
-          targetPath: deployment.env.POSTGRES_DB
-          name: mealie-postgress-app
-          valuesKey: dbname
-        - kind: Secret
-          targetPath: deployment.env.POSTGRES_SERVER
-          name: mealie-postgress-app
-          valuesKey: host
-        - kind: Secret
-          targetPath: deployment.env.POSTGRES_USER
-          name: mealie-postgress-app
-          valuesKey: user
-        - kind: Secret
-          targetPath:: deployment.env.POSTGRES_PASSWORD
-          name: mealie-postgress-app
-          valuesKey: password
-        - kind: Secret
-          targetPath:: deployment.env.POSTGRES_PORT
-          name: mealie-postgress-app
-          valuesKey: port
-        - kind: Secret
-          targetPath:: deployment.env.OIDC_CLIENT_ID
-          name: oidc-secret
-          valuesKey: clientId
-        - kind: Secret
-          targetPath:: deployment.env.OIDC_CLIENT_SECRET
-          name: oidc-secret
-          valuesKey: clientSecret
