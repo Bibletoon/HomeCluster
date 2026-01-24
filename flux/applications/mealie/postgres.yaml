@@ -1,0 +1,17 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+    name: mealie-postgres
+    namespace: mealie
+spec:
+    instances: 3
+    storage:
+        storageClass: longhorn-sr
+        size: 5Gi
+    monitoring:
+        enablePodMonitor: true
+    plugins:
+      - name: barman-cloud.cloudnative-pg.io
+        isWALArchiver: false
+        parameters:
+          barmanObjectName: s3-store
