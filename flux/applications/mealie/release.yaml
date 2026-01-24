@@ -72,12 +72,12 @@ spec:
                 OIDC_CLIENT_ID:
                   valueFrom:
                     secretKeyRef:
-                      name: oidc-secret
+                      name: mealie-oidc
                       key: clientId
                 OIDC_CLIENT_SECRET:
                   valueFrom:
                     secretKeyRef:
-                      name: oidc-secret
+                      name: mealie-oidc
                       key: clientSecret
             image:
                 repository: ghcr.io/mealie-recipes/mealie
