@@ -17,7 +17,7 @@ spec:
     values:
         image:
             repository: freshrss/freshrss
-            tag: 1.27.1
+            tag: 1.28.1
         env:
             - name: OIDC_CLIENT_ID
               valueFrom:
