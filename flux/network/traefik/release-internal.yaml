@@ -1,0 +1,43 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: traefik-internal
+    namespace: traefik
+spec:
+    interval: 10m
+    chart:
+        spec:
+            chart: traefik
+            version: '35.4.0'
+            sourceRef:
+                kind: HelmRepository
+                name: traefik
+                namespace: traefik
+            interval: 10m
+    values:
+        deployment:
+            ingressClass:
+              enabled: false
+            replicas: 3
+        service:
+            spec:
+                loadBalancerIP: "192.168.2.104"
+                externalTrafficPolicy: Local
+        providers:
+            kubernetesCRD:
+                allowCrossNamespace: true
+        experimental:
+          plugins:
+            traefik-oidc-auth:
+              moduleName: "github.com/sevensolutions/traefik-oidc-auth"
+              version: "v0.17.0"
+        ports:
+            web:
+                redirections:
+                    entryPoint:
+                        to: websecure
+                        permanent: true
+                        scheme: https
+            websecure:
+                middlewares:
+                    - error-pages-redirect-middleware@kubernetescrd
