@@ -8,7 +8,7 @@ spec:
     chart:
         spec:
             chart: mariadb-operator
-            version: '0.38.x'
+            version: '25.10.x'
             sourceRef:
                 kind: HelmRepository
                 name: mariadb
