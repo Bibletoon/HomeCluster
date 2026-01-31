@@ -21,6 +21,8 @@ spec:
             spec:
                 loadBalancerIP: "192.168.2.104"
                 externalTrafficPolicy: Local
+        ingressClass:
+          isDefaultClass: false
         providers:
             kubernetesCRD:
                 enabled: true
@@ -28,7 +30,6 @@ spec:
                 allowCrossNamespace: true
             kubernetesIngress:
                 enabled: true
-                isDefaultClass: false
                 ingressClass: traefik-internal
         experimental:
           plugins:
