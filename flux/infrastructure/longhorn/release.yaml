@@ -19,5 +19,3 @@ spec:
             enabled: true
             ingressClassName: "traefik-internal"
             host: "longhorn.biblehome.xyz"
-            annotations:
-                traefik.ingress.kubernetes.io/router.middlewares: default-allow-local-only@kubernetescrd
