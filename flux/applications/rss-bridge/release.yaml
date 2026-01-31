@@ -26,9 +26,7 @@ spec:
         ingress:
             main:
                 enabled: true
-                ingressClassName: traefik
-                annotations:
-                    traefik.ingress.kubernetes.io/router.middlewares: default-allow-local-only@kubernetescrd
+                ingressClassName: traefik-internal
                 hosts:
                     - host: rss-bridge.biblehome.xyz
                       paths:
