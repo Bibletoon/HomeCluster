@@ -46,4 +46,4 @@ spec:
             websecure:
                 middlewares:
                     - error-pages-redirect-middleware@kubernetescrd
-                    - allow-local-only@kubernetescrd
+                    - allow-local-only
