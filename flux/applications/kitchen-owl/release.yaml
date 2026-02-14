@@ -76,6 +76,7 @@ spec:
                 runAsNonRoot: false
         persistence:
           enabled: true
+          mountPVC: true
           mountPath: "/data"
           storageClass: longhorn-bkp
           storageSize: 3Gi
