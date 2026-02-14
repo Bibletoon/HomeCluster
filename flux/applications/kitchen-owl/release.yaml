@@ -21,13 +21,13 @@ spec:
             reloadOnChange: true
             env:
                 DISABLE_USERNAME_PASSWORD_LOGIN:
-                  value: true
+                  value: 'true'
                 FRONT_URL:
                   value: kitchen-owl.bibletoon.xyz
                 OIDC_ISSUER:
-                 value: 'https://id.bibletoon.xyz/.well-known/openid-configuration'
+                  value: 'https://id.bibletoon.xyz/.well-known/openid-configuration'
                 DB_DRIVER:
-                 value: postgresql
+                  value: postgresql
                 DB_NAME:
                   valueFrom:
                     secretKeyRef:
