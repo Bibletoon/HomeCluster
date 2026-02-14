@@ -25,7 +25,7 @@ spec:
                 FRONT_URL:
                   value: kitchen-owl.bibletoon.xyz
                 OIDC_ISSUER:
-                  value: 'https://id.bibletoon.xyz/.well-known/openid-configuration'
+                  value: 'https://id.bibletoon.xyz'
                 DB_DRIVER:
                   value: postgresql
                 DB_NAME:
