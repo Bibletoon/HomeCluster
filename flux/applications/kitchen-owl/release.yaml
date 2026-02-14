@@ -1,0 +1,95 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: kitchen-owl
+    namespace: kitchen-owl
+spec:
+    interval: 10m
+    chart:
+        spec:
+            chart: application
+            version: '6.14.0'
+            sourceRef:
+                kind: HelmRepository
+                name: stakater
+                namespace: application
+            interval: 1h
+    values:
+        applicationName: "kitchen-owl"
+        deployment:
+            enabled: true
+            reloadOnChange: true
+            env:
+                DISABLE_USERNAME_PASSWORD_LOGIN:
+                  value: true
+                FRONT_URL:
+                  value: kitchen-owl.bibletoon.xyz
+                OIDC_ISSUER:
+                 value: 'https://id.bibletoon.xyz/.well-known/openid-configuration'
+                DB_DRIVER:
+                 value: postgresql
+                DB_NAME:
+                  valueFrom:
+                    secretKeyRef:
+                      name: kitchen-owl-postgres-app
+                      key: dbname
+                DB_HOST:
+                  valueFrom:
+                    secretKeyRef:
+                      name: kitchen-owl-postgres-app
+                      key: host
+                DB_USER:
+                  valueFrom:
+                    secretKeyRef:
+                      name: kitchen-owl-postgres-app
+                      key: user
+                DB_PASSWORD:
+                  valueFrom:
+                    secretKeyRef:
+                      name: kitchen-owl-postgres-app
+                      key: password
+                DB_PORT:
+                  valueFrom:
+                    secretKeyRef:
+                      name: kitchen-owl-postgres-app
+                      key: port
+                OIDC_CLIENT_ID:
+                  valueFrom:
+                    secretKeyRef:
+                      name: kitchen-owl-secret
+                      key: clientId
+                OIDC_CLIENT_SECRET:
+                  valueFrom:
+                    secretKeyRef:
+                      name: kitchen-owl-secret
+                      key: clientSecret
+                JWT_SECRET_KEY:
+                  valueFrom:
+                    secretKeyRef:
+                      name: kitchen-owl-secret
+                      key: jwtSecret
+            image:
+                repository: tombursch/kitchenowl
+                tag: v0.7.6
+            containerSecurityContext:
+                readOnlyRootFilesystem: true
+                runAsNonRoot: false
+        persistence:
+          enabled: true
+          mountPath: "/data"
+          storageClass: longhorn-bkp
+          storageSize: 3Gi
+        service:
+            enabled: true
+            ports:
+              - port: 8080
+                name: http
+                protocol: TCP
+                targetPort: 8080
+        ingress:
+            enabled: true
+            ingressClassName: traefik
+            hosts:
+                - host: kitchen-owl.bibletoon.xyz
+                  paths:
+                      - path: /

@@ -1,0 +1,13 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: kitchen-owl-pg-backup
+  namespace: mealie
+spec:
+  cluster:
+    name: kitchen-owl-postgres
+  schedule: '0 0 0 * * *'
+  backupOwnerReference: self
+  method: plugin
+  pluginConfiguration:
+    name: barman-cloud.cloudnative-pg.io
