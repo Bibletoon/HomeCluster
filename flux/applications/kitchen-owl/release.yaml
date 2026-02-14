@@ -23,7 +23,7 @@ spec:
                 DISABLE_USERNAME_PASSWORD_LOGIN:
                   value: 'true'
                 FRONT_URL:
-                  value: kitchen-owl.bibletoon.xyz
+                  value: https://kitchen-owl.bibletoon.xyz
                 OIDC_ISSUER:
                   value: 'https://id.bibletoon.xyz'
                 DB_DRIVER:
