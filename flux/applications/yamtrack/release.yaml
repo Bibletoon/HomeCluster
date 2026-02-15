@@ -42,7 +42,7 @@ spec:
                 name: secrets
             image:
                 repository: ghcr.io/fuzzygrim/yamtrack
-                tag: 0.24.11
+                tag: 0.25.0
             containerSecurityContext:
                 readOnlyRootFilesystem: false
                 runAsNonRoot: false
