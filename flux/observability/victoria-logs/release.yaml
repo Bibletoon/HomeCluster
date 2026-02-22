@@ -26,4 +26,4 @@ spec:
               path:
                 - /
               port: http
-          ingressClassName:
+          ingressClassName: traefik-internal
