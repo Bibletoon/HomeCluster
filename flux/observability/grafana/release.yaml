@@ -28,6 +28,9 @@ spec:
             size: 5Gi
         envFromSecret: grafana-auth
         grafana.ini:
+            plugins:
+              plugin_admin_enabled: true
+              plugin_admin_external_manage_enabled: true
             server:
                 root_url: 'https://grafana.bibletoon.xyz/'
             auth:
