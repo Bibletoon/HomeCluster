@@ -30,7 +30,7 @@ spec:
         grafana.ini:
             plugins:
               plugin_admin_enabled: true
-              plugin_admin_external_manage_enabled: true
+              plugin_admin_external_manage_enabled: false
             server:
                 root_url: 'https://grafana.bibletoon.xyz/'
             auth:
@@ -47,4 +47,4 @@ spec:
                     token_url: "https://id.bibletoon.xyz/api/oidc/token"
                     api_url: "https://id.bibletoon.xyz/api/oidc/userinfo"
                     # Optionally map user groups to Grafana roles
-                    role_attribute_path: contains(groups, 'Grafana Admins') && 'Admin' || contains(groups, 'Grafana Editors') && 'Editor' || 'Viewer'
+                    role_attribute_path: contains(groups, 'Grafana Admins') && 'GRAFANA_ADMIN' || contains(groups, 'Grafana Editors') && 'Editor' || 'Viewer'
