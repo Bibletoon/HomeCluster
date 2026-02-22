@@ -16,4 +16,4 @@ spec:
             interval: 1h
     values:
       remoteWrite:
-        - url: http://victoria-logs-victoria-logs-cluster-vlselect:9481
+        - url: http://victoria-logs-victoria-logs-cluster-vlinsert:9481
