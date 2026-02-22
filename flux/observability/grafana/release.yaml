@@ -47,4 +47,5 @@ spec:
                     token_url: "https://id.bibletoon.xyz/api/oidc/token"
                     api_url: "https://id.bibletoon.xyz/api/oidc/userinfo"
                     # Optionally map user groups to Grafana roles
+                    allow_assign_grafana_admin: true
                     role_attribute_path: contains(groups, 'Grafana Server Admins') && 'GrafanaAdmin' || contains(groups, 'Grafana Admins') && 'Admin' || contains(groups, 'Grafana Editors') && 'Editor' || 'Viewer'
