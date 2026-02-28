@@ -23,7 +23,7 @@ spec:
                 repository: bibletoon/bibleblog
                 tag: 0.0.2
             containerSecurityContext:
-                readOnlyRootFilesystem: true
+                readOnlyRootFilesystem: false
                 runAsNonRoot: false
         service:
             enabled: true
