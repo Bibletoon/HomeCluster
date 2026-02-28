@@ -24,7 +24,7 @@ spec:
                 tag: 0.0.2
             containerSecurityContext:
                 readOnlyRootFilesystem: true
-                runAsNonRoot: true
+                runAsNonRoot: false
         service:
             enabled: true
             ports:
