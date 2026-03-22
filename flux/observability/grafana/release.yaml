@@ -28,6 +28,8 @@ spec:
             size: 5Gi
         envFromSecret: grafana-auth
         grafana.ini:
+            database:
+              type: postgres
             plugins:
               plugin_admin_enabled: true
               plugin_admin_external_manage_enabled: false
@@ -49,3 +51,8 @@ spec:
                     # Optionally map user groups to Grafana roles
                     allow_assign_grafana_admin: true
                     role_attribute_path: contains(groups, 'Grafana Server Admins') && 'GrafanaAdmin' || contains(groups, 'Grafana Admins') && 'Admin' || contains(groups, 'Grafana Editors') && 'Editor' || 'Viewer'
+    valuesFrom:
+      - kind: Secret
+        targetPath: grafana.ini.database.url
+        name: grafana-postgres-app
+        valuesKey: host
