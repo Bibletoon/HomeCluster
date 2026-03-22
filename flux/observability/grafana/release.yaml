@@ -55,4 +55,4 @@ spec:
       - kind: Secret
         targetPath: grafana\.ini.database.url
         name: grafana-postgres-app
-        valuesKey: host
+        valuesKey: uri
