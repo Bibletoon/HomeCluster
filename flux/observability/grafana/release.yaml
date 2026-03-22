@@ -53,6 +53,6 @@ spec:
                     role_attribute_path: contains(groups, 'Grafana Server Admins') && 'GrafanaAdmin' || contains(groups, 'Grafana Admins') && 'Admin' || contains(groups, 'Grafana Editors') && 'Editor' || 'Viewer'
     valuesFrom:
       - kind: Secret
-        targetPath: grafana.ini.database.url
+        targetPath: grafana\.ini.database.url
         name: grafana-postgres-app
         valuesKey: host
