@@ -23,7 +23,7 @@ spec:
                 - host: memos.bibletoon.xyz
                   paths:
                     - path: /
-                      pathType: ImplementationSpecific
+                      pathType: Prefix
       env:
          MEMOS_DRIVER: postgres
          MEMOS_DSN:
