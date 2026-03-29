@@ -25,6 +25,7 @@ spec:
                     - path: /
                       pathType: Prefix
       env:
+         MEMOS_PORT: 5230
          MEMOS_DRIVER: postgres
          MEMOS_DSN:
            valueFrom:
