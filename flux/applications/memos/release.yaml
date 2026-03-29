@@ -12,7 +12,7 @@ spec:
             sourceRef:
                 kind: HelmRepository
                 name: zekker6
-                namespace: homepage
+                namespace: memos
             interval: 1h
     values:
       ingress:
