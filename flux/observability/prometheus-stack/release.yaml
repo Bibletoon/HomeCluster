@@ -101,6 +101,8 @@ spec:
                             chat_id: 412750554
                             parse_mode: 'HTML'
                             message: '{{ "{{ template \"telegram.message\" . }}" }}'
+                            http_config:
+                              proxy_url: '{{ .Values.telegram_proxy }}'
                 route:
                     group_by:
                         - namespace
@@ -184,3 +186,7 @@ spec:
           targetPath: telegram_token
           name: telegram
           valuesKey: token
+        - kind: Secret
+          targetPath: telegram_proxy
+          name: telegram
+          valuesKey: proxy
