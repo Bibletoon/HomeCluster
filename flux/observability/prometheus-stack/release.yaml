@@ -41,7 +41,6 @@ spec:
                 scrapeConfigSelector: {}
                 scrapeConfigNamespaceSelector: {}
                 persistentVolumeClaimRetentionPolicy:
-
                 retention: 5d
                 retentionSize: 45GB
                 storageSpec:
