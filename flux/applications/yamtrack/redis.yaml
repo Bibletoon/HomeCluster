@@ -8,7 +8,7 @@ spec:
     chart:
         spec:
             chart: redis
-            version: '20.0.x'
+            version: '25.3.x'
             sourceRef:
                 kind: HelmRepository
                 name: bitnamicharts
