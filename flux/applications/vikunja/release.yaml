@@ -37,6 +37,7 @@ spec:
                       enableregistration: "false"
           env:
             VIKUNJA_DATABASE_TYPE: "postgres"
+            VIKUNJA_AUTH_LOCAL_ENABLED: "false"
             VIKUNJA_AUTH_OPENID_ENABLED: "true"
             VIKUNJA_AUTH_OPENID_PROVIDERS_POCKETID_NAME: "PocketID"
             VIKUNJA_AUTH_OPENID_PROVIDERS_POCKETID_AUTHURL: "https://id.bibletoon.xyz"
