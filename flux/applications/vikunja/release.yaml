@@ -7,10 +7,9 @@ spec:
     interval: 10m
     chart:
         spec:
-            chart: helm-chart
             version: '1.0.x'
             sourceRef:
-                kind: HelmRepository
+                kind: OCIRepository
                 name: vikunja
                 namespace: vikunja
             interval: 1h
