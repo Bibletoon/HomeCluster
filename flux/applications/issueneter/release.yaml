@@ -22,6 +22,8 @@ spec:
             env:
                 CONFIG_PATH:
                     value: /config
+                DOTNET_HOSTBUILDER__RELOADCONFIGONCHANGE:
+                    value: 'False'
             volumes:
                 config:
                     secret:

@@ -21,11 +21,7 @@ spec:
             hosts:
                 - grafana.bibletoon.xyz
         persistence:
-            enabled: true
-            storageClassName: "longhorn"
-            accessModes:
-                - ReadWriteOnce
-            size: 5Gi
+            enabled: false
         envFromSecret: grafana-auth
         grafana.ini:
             database:
