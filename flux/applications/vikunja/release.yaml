@@ -16,8 +16,9 @@ spec:
             interval: 1h
     values:
         ingress:
+          main:
             enabled: true
-            ingressClassName: traefik
+            className: traefik
             hosts:
                 - host: vikunja.bibletoon.xyz
                   paths:
