@@ -6,5 +6,3 @@ metadata:
 spec:
     interval: 1h
     url: oci://ghcr.io/go-vikunja/helm-chart
-    ref:
-      digest: 1.0.0
