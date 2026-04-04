@@ -35,15 +35,12 @@ spec:
                     service:
                       publicurl: "https://vikunja.bibletoon.xyz"
                       enableregistration: "false"
-                    auth:
-                      openid:
-                        enabled: true
-                        pocketid:
-                          name: "PocketID"
-                          authurl: "https://id.bibletoon.xyz"
-                          scope: "openid profile email"
           env:
             VIKUNJA_DATABASE_TYPE: "postgres"
+            VIKUNJA_AUTH_OPENID_ENABLED: "true"
+            VIKUNJA_AUTH_OPENID_PROVIDERS_POCKETID_NAME: "PocketID"
+            VIKUNJA_AUTH_OPENID_PROVIDERS_POCKETID_AUTHURL: "https://id.bibletoon.xyz"
+            VIKUNJA_AUTH_OPENID_PROVIDERS_POCKETID_SCOPE: "openid profile email"
     valuesFrom:
         - kind: Secret
           targetPath: vikunja.env.VIKUNJA_DATABASE_DATABASE
