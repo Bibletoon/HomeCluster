@@ -27,20 +27,21 @@ spec:
                     paths:
                         - path: '/'
                           pathType: Prefix
-          configMap:
-            enabled: true
-            data:
-              config.yml: |
-                  service:
-                    publicurl: "https://vikunja.bibletoon.xyz"
-                    enableregistration: "false"
-                  auth:
-                    openid:
-                      enabled: true
-                      pocketid:
-                        name: "PocketID"
-                        authurl: "https://id.bibletoon.xyz"
-                        scope: "openid profile email"
+          configMaps:
+            config:
+              enabled: true
+              data:
+                config.yml: |
+                    service:
+                      publicurl: "https://vikunja.bibletoon.xyz"
+                      enableregistration: "false"
+                    auth:
+                      openid:
+                        enabled: true
+                        pocketid:
+                          name: "PocketID"
+                          authurl: "https://id.bibletoon.xyz"
+                          scope: "openid profile email"
           env:
             VIKUNJA_DATABASE_TYPE: "postgres"
     valuesFrom:
