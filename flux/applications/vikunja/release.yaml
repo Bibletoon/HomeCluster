@@ -1,0 +1,66 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: vikunja
+    namespace: vikunja
+spec:
+    interval: 10m
+    chart:
+        spec:
+            chart: helm-chart
+            version: '1.0.x'
+            sourceRef:
+                kind: HelmRepository
+                name: vikunja
+                namespace: vikunja
+            interval: 1h
+    values:
+        ingress:
+            enabled: true
+            ingressClassName: traefik
+            hosts:
+                - host: vikunja.bibletoon.xyz
+                  paths:
+                      - path: '/'
+                        pathType: Prefix
+        configMap:
+          enabled: true
+          data:
+            config.yml: |
+                service:
+                  publicurl: "https://vikunja.bibletoon.xyz"
+                  enableregistration: false
+                auth:
+                  openid:
+                    enabled: true
+                    pocketid:
+                      name: PocketID
+                      authurl: "https://id.bibletoon.xyz"
+                      scope: "openid profile email"
+        env:
+          VIKUNJA_DATABASE_TYPE: "postgres "
+    valuesFrom:
+        - kind: Secret
+          targetPath: env.VIKUNJA_DATABASE_DATABASE
+          name: vikunja-postgres-app
+          valuesKey: dbname
+        - kind: Secret
+          targetPath: env.VIKUNJA_DATABASE_HOST
+          name: vikunja-postgres-app
+          valuesKey: host-port
+        - kind: Secret
+          targetPath: env.VIKUNJA_DATABASE_USER
+          name: vikunja-postgres-app
+          valuesKey: user
+        - kind: Secret
+          targetPath: env.VIKUNJA_DATABASE_PASSWORD
+          name: vikunja-postgres-app
+          valuesKey: password
+        - kind: Secret
+          targetPath: env.VIKUNJA_AUTH_OPENID_PROVIDERS_POCKETID_CLIENTID
+          name: vikunja-oidc
+          valuesKey: clientId
+        - kind: Secret
+          targetPath: env.VIKUNJA_AUTH_OPENID_PROVIDERS_POCKETID_CLIENTSECRET
+          name: vikunja-oidc
+          valuesKey: clientSecret
