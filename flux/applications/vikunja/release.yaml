@@ -7,7 +7,7 @@ spec:
     interval: 10m
     chart:
         spec:
-            chart: helm-chart
+            chart: vikunja
             version: 'v2.0.2'
             sourceRef:
                 kind: HelmRepository
@@ -29,16 +29,16 @@ spec:
             config.yml: |
                 service:
                   publicurl: "https://vikunja.bibletoon.xyz"
-                  enableregistration: false
+                  enableregistration: "false"
                 auth:
                   openid:
                     enabled: true
                     pocketid:
-                      name: PocketID
+                      name: "PocketID"
                       authurl: "https://id.bibletoon.xyz"
                       scope: "openid profile email"
         env:
-          VIKUNJA_DATABASE_TYPE: "postgres "
+          VIKUNJA_DATABASE_TYPE: "postgres"
     valuesFrom:
         - kind: Secret
           targetPath: env.VIKUNJA_DATABASE_DATABASE
