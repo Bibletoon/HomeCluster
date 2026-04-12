@@ -18,6 +18,7 @@ spec:
     externalClusters:
       - name: grafana-postgres
         barmanObjectStore:
+          serverName: biblenas-s3
           destinationPath: s3://pg-backup/
           endpointURL: https://s3.biblenas.xyz
           s3Credentials:
