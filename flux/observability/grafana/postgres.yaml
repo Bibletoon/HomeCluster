@@ -15,6 +15,21 @@ spec:
         recovery:
           backup:
             name: grafana-pg-backup-20260411000000
+    externalClusters:
+      - name: grafana-postgres
+        barmanObjectStore:
+          destinationPath: s3://pg-backup/
+          endpointURL: https://s3.biblenas.xyz
+          s3Credentials:
+            accessKeyId:
+              name: s3-creds
+              key: keyId
+            secretAccessKey:
+              name: s3-creds
+              key: secretKey
+            region:
+              name: s3-creds
+              key: region
     plugins:
       - name: barman-cloud.cloudnative-pg.io
         isWALArchiver: false
