@@ -10,25 +10,6 @@ spec:
         size: 5Gi
     monitoring:
         enablePodMonitor: true
-    bootstrap:
-        recovery:
-          source: clusterBackup
-    externalClusters:
-      - name: grafana-postgres
-        barmanObjectStore:
-          serverName: biblenas-s3
-          destinationPath: s3://pg-backup/
-          endpointURL: https://s3.biblenas.xyz
-          s3Credentials:
-            accessKeyId:
-              name: s3-creds
-              key: keyId
-            secretAccessKey:
-              name: s3-creds
-              key: secretKey
-            region:
-              name: s3-creds
-              key: region
     plugins:
       - name: barman-cloud.cloudnative-pg.io
         isWALArchiver: false
