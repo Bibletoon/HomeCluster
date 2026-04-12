@@ -1,0 +1,37 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+    name: grafana-postgres
+    namespace: grafana
+spec:
+    instances: 3
+
+    storage:
+        storageClass: longhorn-sr
+        size: 5Gi
+    monitoring:
+        enablePodMonitor: true
+    bootstrap:
+        recovery:
+          backup:
+            name: grafana-pg-backup-20260411000000
+    externalClusters:
+      - name: grafana-postgres
+        barmanObjectStore:
+          destinationPath: s3://pg-backup/
+          endpointURL: https://s3.biblenas.xyz
+          s3Credentials:
+            accessKeyId:
+              name: s3-creds
+              key: keyId
+            secretAccessKey:
+              name: s3-creds
+              key: secretKey
+            region:
+              name: s3-creds
+              key: region
+    plugins:
+      - name: barman-cloud.cloudnative-pg.io
+        isWALArchiver: false
+        parameters:
+          barmanObjectName: s3-store
