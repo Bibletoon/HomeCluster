@@ -36,6 +36,6 @@ spec:
             enabled: true
             ingressClassName: traefik
             hosts:
-                - host: bibletoon.xyz
+                - host: blog.bibletoon.xyz
                   paths:
                       - path: /
