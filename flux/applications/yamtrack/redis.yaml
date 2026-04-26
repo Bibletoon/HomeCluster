@@ -1,0 +1,32 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: yamtrack-redis
+    namespace: yamtrack
+spec:
+    interval: 10m
+    chart:
+        spec:
+            chart: redis
+            version: '25.3.x'
+            sourceRef:
+                kind: HelmRepository
+                name: bitnamicharts
+                namespace: redis
+            interval: 1h
+    values:
+        master:
+          persistence:
+            enabled: false
+        replica:
+            replicaCount: 2
+            persistence:
+              enabled: false
+        auth:
+            enabled: true
+            existingSecret: "redis-password"
+            existingSecretPasswordKey: "password"
+        metrics:
+            enabled: true
+            serviceMonitor:
+                enabled: true
