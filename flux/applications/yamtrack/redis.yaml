@@ -15,10 +15,13 @@ spec:
                 namespace: redis
             interval: 1h
     values:
-        persistence:
+        master:
+          persistence:
             enabled: false
         replica:
             replicaCount: 2
+            persistence:
+              enabled: false
         auth:
             enabled: true
             existingSecret: "redis-password"
