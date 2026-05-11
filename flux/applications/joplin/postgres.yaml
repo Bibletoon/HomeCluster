@@ -11,11 +11,6 @@ spec:
         size: 5Gi
     monitoring:
         enablePodMonitor: true
-    plugins:
-      - name: barman-cloud.cloudnative-pg.io
-        isWALArchiver: false
-        parameters:
-          barmanObjectName: s3-store
 
     bootstrap:
       recovery:
