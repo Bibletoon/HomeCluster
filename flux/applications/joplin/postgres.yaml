@@ -1,0 +1,19 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+    name: joplin-postgres
+    namespace: joplin
+spec:
+    instances: 3
+
+    storage:
+        storageClass: longhorn-sr
+        size: 10Gi
+    monitoring:
+        enablePodMonitor: true
+
+    plugins:
+      - name: barman-cloud.cloudnative-pg.io
+        isWALArchiver: false
+        parameters:
+          barmanObjectName: s3-store
