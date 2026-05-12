@@ -49,3 +49,8 @@ spec:
                 - host: joplin.bibletoon.xyz
                   paths:
                       - path: /
+    valuesFrom:
+        - kind: Secret
+          targetPath: deployment.env.POSTGRES_CONNECTION_STRING
+          name: joplin-postgres-app
+          valuesKey: uri
