@@ -48,6 +48,6 @@ spec:
                       - path: /
     valuesFrom:
         - kind: Secret
-          targetPath: deployment.env.POSTGRES_CONNECTION_STRING
+          targetPath: deployment.env.POSTGRES_CONNECTION_STRING.value
           name: joplin-postgres-app
           valuesKey: uri
