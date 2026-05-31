@@ -100,7 +100,6 @@ spec:
                             chat_id: 412750554
                             parse_mode: 'HTML'
                             message: '{{ "{{ template \"telegram.message\" . }}" }}'
-                            socks_url: '{{ .Values.telegram_proxy }}'
                 route:
                     group_by:
                         - namespace
@@ -166,6 +165,13 @@ spec:
                                 {{- end -}}
             alertmanagerSpec:
                 replicas: 3
+                containers:
+                    - name: alertmanager
+                      env:
+                          - name: HTTP_PROXY
+                            value: "http://192.168.2.60:7890"
+                          - name: HTTPS_PROXY
+                            value: "http://192.168.2.60:7890"
                 storage:
                     volumeClaimTemplate:
                         spec:
@@ -184,7 +190,3 @@ spec:
           targetPath: telegram_token
           name: telegram
           valuesKey: token
-        - kind: Secret
-          targetPath: telegram_proxy
-          name: telegram
-          valuesKey: proxy
