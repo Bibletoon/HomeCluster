@@ -165,7 +165,7 @@ spec:
                                 {{- end -}}
             alertmanagerSpec:
                 replicas: 3
-                env:
+                extraEnv:
                     - name: HTTP_PROXY
                       value: "http://192.168.2.60:7890"
                     - name: HTTPS_PROXY
