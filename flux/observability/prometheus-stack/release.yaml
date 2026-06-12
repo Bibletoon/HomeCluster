@@ -130,7 +130,7 @@ spec:
                   {{- if .Annotations.summary }}
                   📝 {{ .Annotations.summary }}{{ end }}
                   {{- if .Annotations.description }}
-                  📖 {{ .Annotations.description }}{{ end }}
+                  📖 {{ .Annotations.description | reReplaceAll "&" "&amp;" | reReplaceAll "<" "&lt;" | reReplaceAll ">" "&gt;" }}{{ end }}
 
                   🏷 Labels:
                   {{ range .Labels.SortedPairs }}  <i>{{ .Name }}</i>: <code>{{ .Value }}</code>
