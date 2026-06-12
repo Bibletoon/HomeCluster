@@ -118,50 +118,34 @@ spec:
                     - /etc/alertmanager/config/*.tmpl
             templateFiles:
                 telegram.tmpl: |-
-                                {{ define "__alerts_list" -}}
-                                {{ range . }}
-                                {{if ne (index .Labels "alertname") "" -}}
-                                {{ if eq .Status "firing" }} 🔴 {{ else }} 🟢 {{ end }}
-                                    {{- if ne (index .Labels "severity") "" -}}
-                                        <u><b>[{{ index .Labels "severity" }}]</b></u> {{ end -}}
-                                <b>{{ index .Labels "alertname" }}</b> 🕙 {{ .StartsAt.Format "15:04:05    🗓️ 2006-01-02" }}{{ end -}}
-                                {{ if len .Annotations }}
-                                <i>Annotations:</i>
-                                    {{ range .Annotations.SortedPairs -}}
-                                    - {{ .Name }}: {{ .Value }}
-                                    {{ end -}}
-                                {{ end }}
-                                {{ if len .Labels -}}
-                                <i>Labels:</i>
-                                    {{ range .Labels.SortedPairs -}}
-                                    - {{ .Name }}: {{ .Value }}
-                                    {{ end -}}
-                                {{ end }}
-                                    {{- if gt (len .GeneratorURL) 0 }}<a href="{{ .GeneratorURL }}">source</a>  |  {{ end }}
-                                    {{- if gt (len .SilenceURL) 0 }}<a href="{{ .SilenceURL }}">🔕 silence</a>  |  {{ end }}
-                                    {{- if gt (len .DashboardURL) 0 }}📁 <a href="{{ .DashboardURL }}">dashboard</a>  |  {{ end }}
-                                    {{- if gt (len .PanelURL) 0 }}<a href="{{ .PanelURL }}">panel</a> {{- end -}}
-                                    --------
-                                {{- end -}} {{- /* range */ -}}
-                                {{- end -}} {{- /* define __alerts_list */ -}}
+                  {{ define "alert_list" }}{{ range . }}
+                  ---
+                  🪪 <b>{{ .Labels.alertname }}</b>
+                  {{- if eq .Labels.severity "critical" }}
+                  🚨 CRITICAL 🚨 {{ end }}
+                  {{- if eq .Labels.severity "warning" }}
+                  ⚠️ WARNING ⚠️{{ end }}
+                  {{- if .Annotations.summary }}
+                  📝 {{ .Annotations.summary }}{{ end }}
+                  {{- if .Annotations.description }}
+                  📖 {{ .Annotations.description }}{{ end }}
 
-                                {{ define "__telegram.title" -}}
-                                {{ if ne (index .CommonLabels "severity") "" }} <u><b>{{ index .CommonLabels "severity" }}</b></u> {{ end -}}
-                                {{ if ne (index .CommonLabels "alertname") "" -}}
-                                    [{{ index .CommonLabels "alertname" }}]
-                                {{- end -}}
-                                {{- end -}}{{- /* define __telegram */ -}}
+                  🏷 Labels:
+                  {{ range .Labels.SortedPairs }}  <i>{{ .Name }}</i>: <code>{{ .Value }}</code>
+                  {{ end }}{{ end }}
+                  🛠 <a href="https:/grafana.bibletoon.xyz">Grafana</a> 💊 <a href="https://alerts.biblehome.xyz">Alertmanager</a> 💊
+                  {{ end }}
 
-                                {{ define "telegram.message" }}
-                                    {{ if gt (len .Alerts.Firing) 0 }}
-                                    🚨 <b>ALARM</b> (#{{ .Alerts.Firing | len }})
-                                    {{- template "__alerts_list" .Alerts.Firing }}{{ end -}}
-                                    {{ if gt (len .Alerts.Resolved) 0 }}
-                                    ✅ <b>RESOLVED</b>{{ template "__telegram.title" . }} (#{{ .Alerts.Resolved | len }})
-                                    {{- template "__alerts_list" .Alerts.Resolved }}{{ end }}
-
-                                <a href="{{ .ExternalURL }}">📲 Grafana</a>
-                                {{- end -}}
+                  {{ define "telegram.message" }}
+                  {{ if gt (len .Alerts.Firing) 0 }}
+                  🔥 Alerts Firing 🔥
+                  {{ template "alert_list" .Alerts.Firing }}
+                  {{ end }}
+                  {{ if gt (len .Alerts.Resolved) 0 }}
+                  ✅ Alerts Resolved ✅
+                  {{ template "alert_list" .Alerts.Resolved }}
+                  {{ end }}
+                  {{ end }}
             alertmanagerSpec:
                 replicas: 3
                 containers:
@@ -172,7 +156,7 @@ spec:
                           - name: HTTPS_PROXY
                             value: "http://192.168.2.60:7890"
                           - name: NO_PROXY
-                            value: "localhost,127.0.0.1,10.96.0.0/12,10.244.0.0/16,.svc,.cluster.local,192.168.0.0/16"
+                            value: "localhost,127.0.0.1,10.0.0.0/8,.svc,.cluster.local,192.168.0.0/16"
                 storage:
                     volumeClaimTemplate:
                         spec:
