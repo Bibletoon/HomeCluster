@@ -128,7 +128,7 @@ spec:
                   {{- if eq .Labels.severity "warning" }}
                   ⚠️ WARNING ⚠️{{ end }}
                   {{- if .Annotations.summary }}
-                  📝 {{ .Annotations.summary }}{{ end }}
+                  📝 {{ .Annotations.summary  | reReplaceAll "&" "&amp;" | reReplaceAll "<" "&lt;" | reReplaceAll ">" "&gt;" }}{{ end }}
                   {{- if .Annotations.description }}
                   📖 {{ .Annotations.description | reReplaceAll "&" "&amp;" | reReplaceAll "<" "&lt;" | reReplaceAll ">" "&gt;" }}{{ end }}
 
