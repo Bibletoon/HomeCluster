@@ -7,15 +7,42 @@ spec:
     interval: 10m
     chart:
         spec:
-            chart: prometheus-operator
-            version: '9.x'
+            chart: kube-prometheus-stack
+            version: '72.4.x'
             sourceRef:
                 kind: HelmRepository
                 name: prometheus-community
                 namespace: prometheus-stack
             interval: 10m
     values:
-        kubeletService:
+        namespaceOverride: prometheus-stack
+        crds:
             enabled: true
-            namespace: kube-system
-            name: kubelet
+        defaultRules:
+            create: true
+        prometheusOperator:
+            enabled: true
+            kubeletService:
+                enabled: true
+                namespace: kube-system
+                name: kubelet
+        prometheus:
+            enabled: false
+        alertmanager:
+            enabled: false
+        grafana:
+            enabled: false
+        prometheusNodeExporter:
+            enabled: false
+        kubeStateMetrics:
+            enabled: false
+        kubeApiServer:
+            enabled: false
+        kubeEtcd:
+            enabled: false
+        kubeControllerManager:
+            enabled: false
+        kubeScheduler:
+            enabled: false
+        kubeProxy:
+            enabled: false
