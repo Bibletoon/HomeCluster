@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: kube-etcd
+    namespace: kube-system
+    labels:
+        app.kubernetes.io/name: kube-etcd
+spec:
+    type: ClusterIP
+    clusterIP: None
+    ports:
+        - name: http-metrics
+          port: 2381
+          targetPort: 2381
+          protocol: TCP
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+    name: kube-etcd
+    namespace: kube-system
+subsets:
+    - addresses:
+          - ip: 192.168.2.11
+          - ip: 192.168.2.21
+          - ip: 192.168.2.31
+      ports:
+          - name: http-metrics
+            port: 2381
+            protocol: TCP
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+    name: kube-etcd
+    namespace: prometheus-stack
+spec:
+    namespaceSelector:
+        matchNames:
+            - kube-system
+    selector:
+        matchLabels:
+            app.kubernetes.io/name: kube-etcd
+    endpoints:
+        - port: http-metrics
+          interval: 30s
+          scheme: http
