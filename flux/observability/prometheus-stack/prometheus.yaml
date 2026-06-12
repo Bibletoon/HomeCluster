@@ -76,6 +76,19 @@ spec:
         runAsUser: 1000
         runAsNonRoot: true
         fsGroup: 2000
+    initContainers:
+        - name: init-chmod-data
+          image: busybox:latest
+          command:
+              - /bin/sh
+              - -c
+              - chown -R 1000:2000 /prometheus && chmod -R g+w /prometheus
+          volumeMounts:
+              - name: prometheus-db
+                mountPath: /prometheus
+          securityContext:
+              runAsUser: 0
+              runAsNonRoot: false
     externalUrl: https://prometheus.biblehome.xyz
 ---
 apiVersion: networking.k8s.io/v1
