@@ -72,6 +72,10 @@ spec:
             - name: alertmanager-alertmanager
               namespace: prometheus-stack
               port: web
+    securityContext:
+        runAsUser: 1000
+        runAsNonRoot: true
+        fsGroup: 2000
     externalUrl: https://prometheus.biblehome.xyz
 ---
 apiVersion: networking.k8s.io/v1
