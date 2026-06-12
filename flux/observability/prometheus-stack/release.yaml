@@ -68,6 +68,8 @@ spec:
             config:
                 global:
                     resolve_timeout: 5m
+                    http_config:
+                        proxy_from_environment: true
                 inhibit_rules:
                     - equal:
                           - namespace
