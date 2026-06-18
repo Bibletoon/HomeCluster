@@ -19,6 +19,13 @@ spec:
         deployment:
             enabled: true
             reloadOnChange: true
+            env:
+              HTTP_PROXY:
+                value: "http://192.168.2.60:7890"
+              HTTPS_PROXY:
+                value: "http://192.168.2.60:7890"
+              NO_PROXY:
+                value: "localhost,127.0.0.1,10.0.0.0/8,.svc,.cluster.local,192.168.0.0/16"
             volumes:
                 config:
                     secret:
