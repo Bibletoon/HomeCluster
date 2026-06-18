@@ -1,0 +1,13 @@
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: pugzdec
+  namespace: pugzdec
+spec:
+  encryptedData:
+    config.yaml: AgAAWM2IcCJINC7Xm3LjdaPjo1aNMvKJq/peA8nGPOw/ZeY3lq7F0um44Bdg6BHxWdRKCzxXYtUQ1dRDDKvB/xo6LoxTlsoaVnMEkPmNIjpJdKfLCZvvQJ47eiia8ZKLqnng4dCuOAEgWTx4D3J2m+ZixFts4C8ylWhk0hkovIlUsLPNMRmcAFjG/YZvAt9AAuliQW5o1gnqNrJqXm7RK22EIhPwNixgpWDUJN/W6K31e7y8lKHlNsB+Bo+CB66+1+rfCk2b5f/cId2MmKUkVFz/J1hrkRWu7fqkb+W7FRKGQRYT9cx2gIbQgj11z4XvJHs3Vgf/fzFp7liHH5FH2/Vp37D3xx4Os+Oqve7XPZOX4hGfuUywfdOYmfh9JO6fKfQTT4xg1aqOWkuwsYsI2rITlUoxnHSJuwY4ctwDEHbGDTYTODrSjjpNiaB5uwgDBhEjIT/6BBvDoM++4L3eBbwhhOjY+gCOCUetjXiUDFnN0rPPI+nHSNq54oyfcGneb6vLzPt8MQdci5afE6QKmVUhQGrjYfR+lByg1Lbs2b+REjwqCSIIlJMGQ7YxcFe78KFgGiZurgYi6RFgBvw4N1v/vq/ddgLrDEYe/TMhqEMWwKhqCBl6Teu800Y+jRMrsdPpLXlLk9PAGoo6Ay2iVJqhsGBCWl357f8+5Qkn4PdF/vKD1yMV9lNInU7Oe0KOHe0TXQ5eIV2nu/VKz3APs4ni0KqGMQqH84nFFprN6D+I7j7NpRGdyl+jFy6c2bwRJgBz4NpyEvMLKutjCvEt1XvkoC9+eVCXVyXWZBlc6iibdkOXtmYCaBjdv0fiok3Kh67+D4iPzflnklzqfVco9bkslIrBwNrquiRlvu2qabeEcra568YQ7fgFVmXCjjoSOToYHaJs5ykeEwJRiY13AQVpOFw2hH5sJWPhma1bujkpUxBO1cNp61SL
+  template:
+    metadata:
+      name: pugzdec
+      namespace: pugzdec
+    type: Opaque
