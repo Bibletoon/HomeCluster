@@ -1,8 +1,8 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-    name: issueneter
-    namespace: issueneter
+    name: pugzdec
+    namespace: pugzdec
 spec:
     interval: 10m
     chart:
@@ -22,7 +22,7 @@ spec:
             volumes:
                 config:
                     secret:
-                        secretName: issueneter
+                        secretName: pugzdec
             volumeMounts:
                 config:
                     mountPath: /app
