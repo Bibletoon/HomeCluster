@@ -25,10 +25,10 @@ spec:
                         secretName: pugzdec
             volumeMounts:
                 config:
-                    mountPath: /app
+                    mountPath: /config
             image:
                 repository: bibletoon/pugzdec
-                tag: 0.0.1
+                tag: 0.0.2
             containerSecurityContext:
                 readOnlyRootFilesystem: false
                 runAsNonRoot: false
