@@ -42,7 +42,7 @@ spec:
                     mountPath: /config
             image:
                 repository: bibletoon/pugzdec
-                tag: 0.0.9
+                tag: 0.0.10
             containerSecurityContext:
                 readOnlyRootFilesystem: true
                 runAsNonRoot: true
