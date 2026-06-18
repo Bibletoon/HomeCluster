@@ -17,6 +17,13 @@ spec:
     values:
         applicationName: "pugzdec"
         deployment:
+            resources:
+              limits:
+                memory: 2048Mi
+                cpu: 2
+              requests:
+                memory: 128Mi
+                cpu: 0.1
             enabled: true
             reloadOnChange: true
             env:
@@ -37,14 +44,9 @@ spec:
                 repository: bibletoon/pugzdec
                 tag: 0.0.9
             containerSecurityContext:
-                readOnlyRootFilesystem: false
-                runAsNonRoot: false
+                readOnlyRootFilesystem: true
+                runAsNonRoot: true
         service:
             enabled: true
         ingress:
-            enabled: true
-            ingressClassName: traefik
-            hosts:
-                - host: pugzdec.bibletoon.xyz
-                  paths:
-                      - path: /
+            enabled: false
