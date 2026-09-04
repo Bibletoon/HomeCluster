@@ -12,6 +12,7 @@ spec:
         enablePodMonitor: true
     plugins:
       - name: barman-cloud.cloudnative-pg.io
-        isWALArchiver: false
+        isWALArchiver: true
         parameters:
           barmanObjectName: s3-store
+          serverName: memos-postgres
