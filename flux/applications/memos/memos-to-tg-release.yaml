@@ -46,4 +46,9 @@ spec:
         service:
             enabled: true
         ingress:
-            enabled: false
+            enabled: true
+            ingressClassName: traefik-internal
+            hosts:
+                - host: mtg.biblehome.xyz
+                  paths:
+                      - path: /
