@@ -1,0 +1,49 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: memos-to-tg
+    namespace: memos
+spec:
+    interval: 10m
+    chart:
+        spec:
+            chart: application
+            version: '4.2.6'
+            sourceRef:
+                kind: HelmRepository
+                name: stakater
+                namespace: application
+            interval: 1h
+    values:
+        applicationName: "memos-to-tg"
+        deployment:
+            resources:
+              limits:
+                memory: 2048Mi
+                cpu: 2
+              requests:
+                memory: 128Mi
+                cpu: 0.1
+            enabled: true
+            reloadOnChange: true
+            env:
+              HTTP_PROXY:
+                value: "http://192.168.2.60:7890"
+              HTTPS_PROXY:
+                value: "http://192.168.2.60:7890"
+              NO_PROXY:
+                value: "localhost,127.0.0.1,10.0.0.0/8,.svc,.cluster.local,192.168.0.0/16"
+            envFrom:
+              secrets:
+                type: secret
+                name: memos-to-tg-secret
+            image:
+                repository: bibletoon/memos-to-tg
+                tag: 0.0.1
+            containerSecurityContext:
+                readOnlyRootFilesystem: true
+                runAsNonRoot: true
+        service:
+            enabled: true
+        ingress:
+            enabled: false
