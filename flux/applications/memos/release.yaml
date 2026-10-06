@@ -27,6 +27,7 @@ spec:
       env:
          MEMOS_PORT: 5230
          MEMOS_DRIVER: postgres
+         MEMOS_WEBHOOK_PRIVATE_NETWORK_ALLOWLIST: 192.168.2.0/24
          MEMOS_DSN:
            valueFrom:
              secretKeyRef:
