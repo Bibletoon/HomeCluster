@@ -39,7 +39,7 @@ spec:
                 name: memos-to-tg-secret
             image:
                 repository: bibletoon/memos-to-tg
-                tag: 0.0.1
+                tag: 0.0.2
             containerSecurityContext:
                 readOnlyRootFilesystem: true
                 runAsNonRoot: true
