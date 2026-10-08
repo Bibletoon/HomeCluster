@@ -21,7 +21,7 @@ spec:
               trilium:
                 image:
                   repository: triliumnext/trilium
-                  tag: v0.106.0
+                  tag: v0.101.3
                   pullPolicy: IfNotPresent
                 env:
                   TRILIUM_MULTIFACTORAUTHENTICATION_OAUTHISSUERBASEURL: 'https://id.bibletoon.xyz'
