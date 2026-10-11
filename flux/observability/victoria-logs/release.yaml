@@ -16,6 +16,7 @@ spec:
             interval: 1h
     values:
       vlstorage:
+        retentionMaxDiskUsagePercent: 90
         persistentVolume:
           storageClassName: longhorn-sr
       vlselect:

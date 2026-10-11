@@ -17,3 +17,6 @@ spec:
     values:
       remoteWrite:
         - url: http://victoria-logs-victoria-logs-cluster-vlinsert:9481
+      extraArgs:
+        remoteWrite.rateLimit: "5000"
+        remoteWrite.maxDiskUsagePerURL: 500MB
