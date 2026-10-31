@@ -21,7 +21,7 @@ spec:
             reloadOnChange: true
             image:
                 repository: bibletoon/bibleblog
-                tag: 0.0.6
+                tag: 0.0.7
             containerSecurityContext:
                 readOnlyRootFilesystem: false
                 runAsNonRoot: false
