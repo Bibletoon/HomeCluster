@@ -15,6 +15,7 @@ spec:
                 namespace: timetagger
             interval: 1h
     values:
+        pvcName: timetagger
         ingress:
             enabled: true
             className: traefik
