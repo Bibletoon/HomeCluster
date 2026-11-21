@@ -1,0 +1,19 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+    name: colette-postgres
+    namespace: colette
+spec:
+    instances: 3
+
+    storage:
+        storageClass: longhorn-sr
+        size: 5Gi
+    monitoring:
+        enablePodMonitor: true
+    plugins:
+      - name: barman-cloud.cloudnative-pg.io
+        isWALArchiver: true
+        parameters:
+          barmanObjectName: s3-store
+          serverName: colette-postgres
